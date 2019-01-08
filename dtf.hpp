@@ -15,9 +15,9 @@ struct flags {
     enum: std::size_t {
          yyyy_mm_dd = 1u << 0u
         ,dd_mm_yyyy = 1u << 1u
-        ,sep1       = 1u << 2u // 2014-12-11 13:58:56
-        ,sep2       = 1u << 3u // 2014.12.11-13.58.59
-        ,sep3       = 1u << 4u // 2014.12.11-13:58:59
+        ,sep1       = 1u << 2u // 2018-12-11 13:58:56
+        ,sep2       = 1u << 3u // 2018.12.11-13.58.59
+        ,sep3       = 1u << 4u // 2018.12.11-13:58:59
         ,secs       = 1u << 5u // seconds resolution
         ,msecs      = 1u << 6u // milliseconds resolution
         ,usecs      = 1u << 7u // microseconds resolution
