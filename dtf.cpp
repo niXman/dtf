@@ -38,16 +38,16 @@
 #include <cstring>
 
 #ifdef DTF_HEADER_ONLY
-#   define DTF_INLINE inline
+#   define __DTF_INLINE inline
 #else
-#   define DTF_INLINE
+#   define __DTF_INLINE
 #endif // DTF_HEADER_ONLY
 
 namespace dtf {
 
 /*************************************************************************************************/
 
-DTF_INLINE std::uint64_t timestamp(int offset) {
+__DTF_INLINE std::uint64_t timestamp(int offset) {
     std::uint64_t ts = std::chrono::duration_cast<
         std::chrono::nanoseconds
     >(std::chrono::system_clock::now().time_since_epoch()).count();
@@ -60,7 +60,7 @@ DTF_INLINE std::uint64_t timestamp(int offset) {
 
 /*************************************************************************************************/
 
-DTF_INLINE std::size_t num_chars(std::size_t v) {
+__DTF_INLINE std::size_t num_chars(std::size_t v) {
     std::size_t n = 1;
     v = (v >= 100000000000000000ull) ? ((n += 17),v / 100000000000000000ull) : v;
     v = (v >= 100000000ull) ? ((n += 8),v / 100000000ull) : v;
@@ -71,7 +71,7 @@ DTF_INLINE std::size_t num_chars(std::size_t v) {
     return n;
 }
 
-DTF_INLINE void utoa(char *ptr, std::size_t n, std::uint64_t v) {
+__DTF_INLINE void utoa(char *ptr, std::size_t n, std::uint64_t v) {
     char *p = ptr + n - 1;
     switch ( n ) {
         case 20: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
@@ -118,7 +118,7 @@ DTF_INLINE void utoa(char *ptr, std::size_t n, std::uint64_t v) {
     *p++ = (v / 10) % 10 + '0'; \
     *p++ = v % 10 + '0';
 
-DTF_INLINE std::size_t timestamp_to_chars(char *ptr, std::uint64_t ts, std::size_t f) {
+__DTF_INLINE std::size_t timestamp_to_chars(char *ptr, std::uint64_t ts, std::size_t f) {
     const auto datesep = (f & flags::sep1) ? '-' : '.';
     const auto timesep = (f & flags::sep1)||(f & flags::sep3) ? ':' : '.';
     const auto sepsep  = (f & flags::sep1) ? ' ' : '-';
