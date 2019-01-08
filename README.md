@@ -8,7 +8,7 @@ Super fast date-time string formating functions used in [YAL](https://github.com
 char buf[dtf::bufsize];
 
 // current timestamp with nanoseconds resolution.
-// as arg can pass hour offset in form '+2'/'-2'
+// as arg can pass offset in hours in form '+2'/'-2'
 auto t = dtf::timestamp();
 
 // avail flags:
