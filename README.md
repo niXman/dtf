@@ -1,5 +1,5 @@
 # dtf
-Very fast date-time string formating functions.
+Super fast date-time string formating functions used in [YAL](https://github.com/niXman/yal) logger.
 
 # Example
 ```cpp
