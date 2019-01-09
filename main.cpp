@@ -39,7 +39,7 @@ struct testvals {
 };
 
 testvals test(char *buf, std::uint64_t ts, std::size_t f) {
-    auto n = dtf::timestamp_to_chars(buf, ts, f);
+    auto n = dtf::timestamp_to_dt_chars(buf, ts, f);
     buf[n] = 0;
 
     return {f, n, buf};
@@ -51,10 +51,14 @@ int main() {
     {
         auto v = dtf::timestamp();
         char buf[dtf::bufsize];
-        auto n = dtf::timestamp_to_chars(buf, v, dtf::flags::yyyy_mm_dd|dtf::flags::sep1|dtf::flags::msecs);
+        auto n = dtf::timestamp_to_dt_chars(buf, v, dtf::flags::yyyy_mm_dd|dtf::flags::sep1|dtf::flags::msecs);
         buf[n] = 0;
 
-        //std::cout << buf << std::endl;
+        std::cout << "1: " << buf << std::endl;
+
+        std::cout << "2: " << dtf::timestamp_dt_str() << std::endl;
+
+        std::cout << "4: " << dtf::timestamp_str() << std::endl;
     }
     static const auto ts = 1546966223006057057ull; // 2019-01-08 16:50:23.006057557
     static const testvals vals[] = {

@@ -95,6 +95,34 @@ __DTF_INLINE void utoa(char *ptr, std::size_t n, std::uint64_t v) {
 
 /*************************************************************************************************/
 
+__DTF_INLINE std::size_t timestamp_to_chars(char *buf, std::uint64_t ts, std::size_t f) {
+    ts = (f & flags::secs) ? ts / 1000000000ull
+        : (f & flags::msecs) ? ts / 1000000ull
+            : (f & flags::usecs) ? ts / 1000ull
+                : ts
+    ;
+
+    const auto n = num_chars(ts);
+    utoa(buf, n, ts);
+
+    return n;
+}
+
+__DTF_INLINE std::string timestamp_to_str(std::uint64_t ts, std::size_t f) {
+    char buf[bufsize];
+    const auto n = timestamp_to_chars(buf, ts, f);
+    buf[n] = 0;
+
+    return buf;
+}
+
+__DTF_INLINE std::string timestamp_str(std::size_t f, int offset) {
+    const auto ts = timestamp(offset);
+    return timestamp_to_str(ts, f);
+}
+
+/*************************************************************************************************/
+
 #define __DTF_YEAR(p, v) \
     *p++ = (v / 1000) % 10 + '0'; \
     *p++ = (v / 100) % 10 + '0'; \
@@ -113,7 +141,7 @@ __DTF_INLINE void utoa(char *ptr, std::size_t n, std::uint64_t v) {
     *p++ = (v / 10) % 10 + '0'; \
     *p++ = v % 10 + '0';
 
-__DTF_INLINE std::size_t timestamp_to_chars(char *ptr, std::uint64_t ts, std::size_t f) {
+__DTF_INLINE std::size_t timestamp_to_dt_chars(char *ptr, std::uint64_t ts, std::size_t f) {
     const auto datesep = (f & flags::sep1) ? '-' : '.';
     const auto timesep = (f & flags::sep1)||(f & flags::sep3) ? ':' : '.';
     const auto sepsep  = (f & flags::sep1) ? ' ' : '-';
@@ -218,6 +246,21 @@ __DTF_INLINE std::size_t timestamp_to_chars(char *ptr, std::uint64_t ts, std::si
     }
 
     return p - ptr;
+}
+
+/*************************************************************************************************/
+
+__DTF_INLINE std::string timestamp_to_dt_str(std::uint64_t ts, std::size_t f) {
+    char buf[bufsize];
+    const auto n = timestamp_to_dt_chars(buf, ts, f);
+    buf[n] = 0;
+
+    return buf;
+}
+
+__DTF_INLINE std::string timestamp_dt_str(std::size_t f, int offset) {
+    const auto ts = timestamp(offset);
+    return timestamp_to_dt_str(ts, f);
 }
 
 /*************************************************************************************************/

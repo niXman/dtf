@@ -27,6 +27,8 @@
 #ifndef __dtf__dtf_hpp
 #define __dtf__dtf_hpp
 
+#include <string>
+
 #include <cstdint>
 
 namespace dtf {
@@ -52,11 +54,36 @@ struct flags {
 
 enum { bufsize = 32 };
 
-// returns the num of bytes placed
+// format as number in c-string representation
 std::size_t timestamp_to_chars(
+     char *buf
+    ,std::uint64_t ts
+    ,std::size_t f = flags::msecs
+);
+
+std::string timestamp_to_str(
+     std::uint64_t ts
+    ,std::size_t f = flags::msecs
+);
+
+std::string timestamp_str(std::size_t f = flags::msecs, int offset = 0);
+
+// formats as date-time string
+// returns the num of bytes placed
+std::size_t timestamp_to_dt_chars(
      char *ptr // dst buf with at least 'bufsize' bytes
     ,std::uint64_t ts
     ,std::size_t f = flags::yyyy_mm_dd|flags::sep1|flags::msecs
+);
+
+std::string timestamp_to_dt_str(
+     std::uint64_t ts
+    ,std::size_t f = flags::yyyy_mm_dd|flags::sep1|flags::msecs
+);
+
+std::string timestamp_dt_str(
+     std::size_t f = flags::yyyy_mm_dd|flags::sep1|flags::msecs
+    ,int offset = 0
 );
 
 /*************************************************************************************************/
