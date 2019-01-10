@@ -53,11 +53,8 @@ int main() {
         char buf[dtf::bufsize];
         auto n = dtf::timestamp_to_dt_chars(buf, v, dtf::flags::yyyy_mm_dd|dtf::flags::sep1|dtf::flags::msecs);
         buf[n] = 0;
-
         std::cout << "1: " << buf << std::endl;
-
         std::cout << "2: " << dtf::timestamp_dt_str() << std::endl;
-
         std::cout << "4: " << dtf::timestamp_str() << std::endl;
     }
     static const auto ts = 1546966223006057057ull; // 2019-01-08 16:50:23.006057557
@@ -94,7 +91,10 @@ int main() {
         assert(r.exlen == it.exlen);
         assert(std::strcmp(r.exstr, it.exstr) == 0);
 
-        std::cout << r.exstr << std::endl;
+        auto f = dtf::dt_str_flags(it.exstr, it.exlen);
+        assert(it.flags == f);
+
+        //std::cout << r.exstr << std::endl;
     }
 
     return 0;

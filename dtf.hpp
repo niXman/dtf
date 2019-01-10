@@ -88,6 +88,11 @@ std::string timestamp_dt_str(
 
 /*************************************************************************************************/
 
+// gets the respective flags for date-time string
+std::size_t dt_str_flags(const char *buf, std::size_t n);
+
+/*************************************************************************************************/
+
 } // ns dtf
 
 #ifdef DTF_HEADER_ONLY

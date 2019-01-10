@@ -265,4 +265,36 @@ __DTF_INLINE std::string timestamp_dt_str(std::size_t f, int offset) {
 
 /*************************************************************************************************/
 
+bool is_digit(char ch) {
+    switch ( ch ) {
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9': return true;
+        default: return false;
+    }
+}
+
+__DTF_INLINE std::size_t dt_str_flags(const char *buf, std::size_t n) {
+    std::size_t res{};
+
+    const char c2  = buf[2];
+    const char c10 = buf[10];
+    const char c13 = buf[13];
+
+    res |= is_digit(c2) ? flags::yyyy_mm_dd : flags::dd_mm_yyyy;
+    res |= c10 == ' ' ? flags::sep1 : c13 == '.' ? flags::sep2 : flags::sep3;
+    res |= n == 19 ? flags::secs : n == 23 ? flags::msecs : n == 26 ? flags::usecs : flags::nsecs;
+
+    return res;
+}
+
+/*************************************************************************************************/
+
 } // ns dtf
