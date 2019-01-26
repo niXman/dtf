@@ -229,16 +229,15 @@ __DTF_INLINE std::size_t timestamp_to_dt_chars(char *ptr, std::uint64_t ts, std:
     *p++ = timesep;
     __DTF_HMS(p, secs);
 
-
     const auto pi = (f & flags::secs) ? std::make_pair(ps / 1000000000ull, 0u)
         : (f & flags::msecs) ? std::make_pair(ps / 1000000ull, 3u)
             : (f & flags::usecs) ? std::make_pair(ps / 1000ull, 6u)
                 : std::make_pair(ps, 9u)
     ;
-    if ( pi.first ) {
+    if ( pi.second ) {
         *p++ = '.';
 
-        const auto n = num_chars(pi.first);
+        auto n = num_chars(pi.first);
         p += pi.second - n;
 
         utoa(p, n, pi.first);
