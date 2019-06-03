@@ -48,16 +48,6 @@ testvals test(char *buf, std::uint64_t ts, std::size_t f) {
 /*************************************************************************************************/
 
 int main() {
-    {
-        auto v = dtf::timestamp();
-        char buf[dtf::bufsize];
-        auto n = dtf::timestamp_to_dt_chars(buf, v, dtf::flags::yyyy_mm_dd|dtf::flags::sep1|dtf::flags::msecs);
-        buf[n] = 0;
-        std::cout << "1: " << buf << std::endl;
-        std::cout << "2: " << dtf::timestamp_dt_str() << std::endl;
-        std::cout << "4: " << dtf::timestamp_str() << std::endl;
-    }
-    static const auto ts = 1546966223006057057ull; // 2019-01-08 16:50:23.006057557
     static const testvals vals[] = {
          {dtf::flags::yyyy_mm_dd|dtf::flags::sep1|dtf::flags::secs , 19, "2019-01-08 16:50:23"}
         ,{dtf::flags::yyyy_mm_dd|dtf::flags::sep1|dtf::flags::msecs, 23, "2019-01-08 16:50:23.006"}
@@ -86,6 +76,7 @@ int main() {
     };
 
     for ( const auto &it: vals ) {
+        static const auto ts = 1546966223006057057ull; // 2019-01-08 16:50:23.006057557
         char buf[dtf::bufsize];
         auto r = test(buf, ts, it.flags);
         assert(r.exlen == it.exlen);
@@ -95,6 +86,24 @@ int main() {
         assert(it.flags == f);
 
         //std::cout << r.exstr << std::endl;
+    }
+
+    {
+        auto v = dtf::timestamp();
+        char buf[dtf::bufsize];
+        auto n = dtf::timestamp_to_dt_chars(buf, v, dtf::flags::yyyy_mm_dd|dtf::flags::sep1|dtf::flags::msecs);
+        buf[n] = 0;
+        std::cout << "1: " << buf << std::endl;
+        std::cout << "2: " << dtf::timestamp_dt_str() << std::endl;
+        std::cout << "4: " << dtf::timestamp_str() << std::endl;
+    }
+    {
+        char buf[dtf::bufsize];
+        std::memset(buf, 'F', dtf::bufsize);
+        static const auto ts = 1546966223000000000ull; // 2019-01-08 16:50:23.000000000
+        auto n = dtf::timestamp_to_dt_chars(buf, ts, dtf::flags::yyyy_mm_dd|dtf::flags::sep1|dtf::flags::msecs);
+        buf[n] = 0;
+        std::cout << "5: " << buf << std::endl;
     }
 
     return 0;
