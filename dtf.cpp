@@ -38,6 +38,16 @@
 #   define __DTF_INLINE
 #endif // DTF_HEADER_ONLY
 
+#if __cplusplus >= 201703L
+#   define __DTF_FALLTHROUGH [[fallthrough]]
+#else
+#   if defined(__GNUC__) || defined(__clang__)
+#       define __DTF_FALLTHROUGH __attribute__((fallthrough))
+#   else
+#       error "no fallthrough was specified for compilers other than GCC/Clang"
+#   endif
+#endif // __cplusplus >= 201703L
+
 namespace dtf {
 
 /*************************************************************************************************/
@@ -49,7 +59,7 @@ __DTF_INLINE std::uint64_t timestamp(int offset) {
         >(std::chrono::system_clock::now().time_since_epoch()).count()
     );
 
-    std::uint64_t val = 60 * 60 * 1000000000ull * static_cast<std::uint64_t>(std::abs(offset));
+    std::uint64_t val = 60 * 60 * static_cast<std::uint64_t>(1000000000) * static_cast<std::uint64_t>(std::abs(offset));
     ts = (offset < 0) ? ts - val : ts + val;
 
     return ts;
@@ -71,26 +81,26 @@ __DTF_INLINE std::size_t num_chars(std::size_t v) {
 __DTF_INLINE void utoa(char *ptr, std::size_t n, std::uint64_t v) {
     char *p = ptr + n - 1;
     switch ( n ) {
-        case 20: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 19: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 18: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 17: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 16: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 15: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 14: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 13: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 12: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 11: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 10: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 9 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 8 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 7 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 6 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 5 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 4 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 3 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 2 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
-        case 1 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; // fallthrough
+        case 20: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 19: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 18: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 17: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 16: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 15: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 14: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 13: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 12: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 11: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 10: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 9 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 8 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 7 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 6 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 5 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 4 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 3 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 2 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 1 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
         default: break;
     }
 }
@@ -126,22 +136,22 @@ __DTF_INLINE std::string timestamp_str(std::size_t f, int offset) {
 /*************************************************************************************************/
 
 #define __DTF_YEAR(p, v) \
-    *p++ = (v / 1000) % 10 + '0'; \
-    *p++ = (v / 100) % 10 + '0'; \
-    *p++ = (v / 10) % 10 + '0'; \
-    *p++ = (v) % 10 + '0';
+    *p++ = static_cast<char>((v / 1000) % 10) + '0'; \
+    *p++ = static_cast<char>((v / 100) % 10) + '0'; \
+    *p++ = static_cast<char>((v / 10) % 10) + '0'; \
+    *p++ = static_cast<char>((v) % 10) + '0';
 
 #define __DTF_MONTH(p, v) \
-    *p++ = ((v + 1) / 10) % 10 + '0'; \
-    *p++ = ((v + 1)) % 10 + '0';
+    *p++ = static_cast<char>(((v + 1) / 10) % 10) + '0'; \
+    *p++ = static_cast<char>(((v + 1)) % 10) + '0';
 
 #define __DTF_DAY(p, v) \
-    *p++ = (v / 10) % 10 + '0'; \
-    *p++ = (v % 10) + '0';
+    *p++ = static_cast<char>((v / 10) % 10) + '0'; \
+    *p++ = static_cast<char>((v % 10)) + '0';
 
 #define __DTF_HMS(p, v) \
-    *p++ = (v / 10) % 10 + '0'; \
-    *p++ = v % 10 + '0';
+    *p++ = static_cast<char>((v / 10) % 10) + '0'; \
+    *p++ = static_cast<char>(v % 10) + '0';
 
 __DTF_INLINE std::size_t timestamp_to_dt_chars(char *ptr, std::uint64_t ts, std::size_t f) {
     const auto datesep = (f & flags::sep1) ? '-' : '.';
@@ -246,7 +256,8 @@ __DTF_INLINE std::size_t timestamp_to_dt_chars(char *ptr, std::uint64_t ts, std:
         p += n;
     }
 
-    return p - ptr;
+    assert((p - ptr) >= 0);
+    return static_cast<std::size_t>(p - ptr);
 }
 
 /*************************************************************************************************/
