@@ -1,5 +1,5 @@
 # dtf
-Super fast date-time string formating functions used in [YAL](https://github.com/niXman/yal) logger.
+Super fast date-time string formating functions used in [YAL](https://github.com/niXman/yal) logger, without supporting time-zones, but you can specify the required offset in hours.
 
 # Example
 ```cpp
