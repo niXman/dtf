@@ -43,11 +43,13 @@ namespace dtf {
 /*************************************************************************************************/
 
 __DTF_INLINE std::uint64_t timestamp(int offset) {
-    std::uint64_t ts = std::chrono::duration_cast<
-        std::chrono::nanoseconds
-    >(std::chrono::system_clock::now().time_since_epoch()).count();
+    auto ts = static_cast<std::uint64_t>(
+        std::chrono::duration_cast<
+            std::chrono::nanoseconds
+        >(std::chrono::system_clock::now().time_since_epoch()).count()
+    );
 
-    std::uint64_t val = 60 * 60 * 1000000000ull * std::abs(offset);
+    std::uint64_t val = 60 * 60 * 1000000000ull * static_cast<std::uint64_t>(std::abs(offset));
     ts = (offset < 0) ? ts - val : ts + val;
 
     return ts;
