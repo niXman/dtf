@@ -1,7 +1,7 @@
 
 // MIT License
 //
-// Copyright (c) 2024 niXman (i dotty nixman doggy gmail dotty com)
+// Copyright (c) 2024 niXman (github dot nixman at pm dot me)
 // All rights reserved.
 //
 // This file is part of DTF(https://github.com/niXman/dtf) project.

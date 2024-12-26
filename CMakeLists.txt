@@ -15,5 +15,3 @@ set(SOURCES
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
-
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
