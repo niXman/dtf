@@ -17,8 +17,8 @@ auto t = dtf::timestamp();
 // dtf::date_sep_dash     // 2018-12-11/yyyy-mm-dd
 // dtf::date_sep_point    // 2018.12.11/yyyy.mm.dd
 // dtf::date_sep_empty    // 20181211/yyyymmdd
-// dtf::dt_sep_T          // 2018-12-11T13:58:59 (required when `yyyy_mm_dd | date_sep_empty`)
-// dtf::dt_sep_t          // 2018-12-11t13:58:59 (required when `dd_mm_yyyy | date_sep_empty`)
+// dtf::dt_sep_T          // 20181211T13:58:59 (required when `yyyy_mm_dd | date_sep_empty`)
+// dtf::dt_sep_t          // 11122018t13:58:59 (required when `dd_mm_yyyy | date_sep_empty`)
 // dtf::dt_sep_space      // 2018-12-11 13:58:59
 // dtf::dt_sep_underscore // 2018-12-11_13:58:59
 // dtf::dt_sep_slash      // 2018-12-11/13:58:59
