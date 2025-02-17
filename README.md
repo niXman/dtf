@@ -1,31 +1,53 @@
 # dtf
-Super fast date-time string formating functions used in [YAL](https://github.com/niXman/yal) logger, without supporting time-zones, but you can specify the required offset in hours.
+Fast, header-only, date-time formating and validating functions for C++11
 
 # Example
 ```cpp
-#include "dtf.hpp"
+#include <dtf/dtf.hpp>
 
 char buf[dtf::bufsize];
 
 // current timestamp with nanoseconds resolution.
-// as arg can pass offset in hours in form '+2'/'-2'
+// the required offset in hours can be passed as an argument in form `+2`/`-2`
 auto t = dtf::timestamp();
 
 // avail flags:
-// yyyy_mm_dd // 2018-12-11
-// dd_mm_yyyy // 11-12-2018
-// sep1       // 2018-12-11 13:58:56
-// sep2       // 2018.12.11-13.58.59
-// sep3       // 2018.12.11-13:58:59
-// secs       // seconds resolution
-// msecs      // milliseconds resolution
-// usecs      // microseconds resolution
-// nsecs      // nanoseconds resolution
-auto f = dtf::flags::yyyy_mm_dd|dtf::flags::nsecs|dtf::flags::sep3;
+// dtf::yyyy_mm_dd        // yyyy-mm-dd
+// dtf::dd_mm_yyyy        // dd-mm-yyyy
+// dtf::date_sep_dash     // 2018-12-11/yyyy-mm-dd
+// dtf::date_sep_point    // 2018.12.11/yyyy.mm.dd
+// dtf::date_sep_empty    // 20181211/yyyymmdd
+// dtf::dt_sep_T          // 2018-12-11T13:58:59 (required when `yyyy_mm_dd || date_sep_empty`)
+// dtf::dt_sep_t          // 2018-12-11t13:58:59 (required when `dd_mm_yyyy || date_sep_empty`)
+// dtf::dt_sep_space      // 2018-12-11 13:58:59
+// dtf::dt_sep_underscore // 2018-12-11_13:58:59
+// dtf::dt_sep_slash      // 2018-12-11/13:58:59
+// dtf::time_sep_colon    // 13:58:59/hh:mm:ss
+// dtf::time_sep_point    // 13.58.59/hh.mm.ss
+// dtf::time_sep_empty    // 135859/hhmmss
+// dtf::secs              // seconds resolution
+// dtf::msecs             // milliseconds resolution
+// dtf::usecs             // microseconds resolution
+// dtf::nsecs             // nanoseconds resolution
+
+constexpr auto flags = dtf::yyyy_mm_dd|dtf::date_sep_empty|dtf::dt_sep_T|dtf::time_sep_empty|dtf::nsecs;
 
 // formating
-auto n = dtf::timestamp_to_chars(buf, t, f);
-buf[n] = 0;
+auto str = dtf::dt_str(flags);
 
-std::cout << buf << std::endl; // 2014.12.11-13:58:59.006057557
+std::cout << str << std::endl; // 20181211T135859.006057557
+
+// ...
+
+// validating
+auto f = dtf::get_flags(str);
+assert(f != 0); // wrong string or not supported
+assert(f == flags);
+```
+# Benchmark
+```
+dtf time     : 752177494 ns
+strftime time: 1548738218 ns
+put_time time: 4430988336 ns
+
 ```
