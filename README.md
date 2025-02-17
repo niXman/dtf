@@ -35,7 +35,7 @@ constexpr auto flags = dtf::yyyy_mm_dd|dtf::date_sep_empty|dtf::dt_sep_T|dtf::ti
 // formating
 auto str = dtf::dt_str(flags);
 
-std::cout << str << std::endl; // 20181211T135859.006057557
+std::cout << str << std::endl;
 
 // ...
 
