@@ -313,7 +313,7 @@ static void utoa(char *ptr, std::size_t n, std::uint64_t v) {
         case 4 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
         case 3 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
         case 2 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 1 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10;
+        case 1 : *p-- = static_cast<char>('0'+(v % 10));
     }
 }
 
