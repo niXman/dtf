@@ -1,0 +1,205 @@
+make_wrong_val(
+    0
+   ,dtf::error::too_short
+   ,"2019-01-08T16:"
+)
+,make_wrong_val(
+    1
+   ,dtf::error::too_short
+   ,""
+)
+,make_wrong_val(
+    2
+   ,dtf::error::too_short
+   ,"20190108T16502"
+)
+,make_wrong_val(
+    3
+   ,dtf::error::too_long
+   ,"2019-01-08T16:50:23.0060570570"
+)
+,make_wrong_val(
+    4
+   ,dtf::error::too_long
+   ,"2019-01-08T16:50:23.00605705700"
+)
+,make_wrong_val(
+    5
+   ,dtf::error::wrong_dt_sep
+   ,"123456789012345"
+)
+,make_wrong_val(
+    6
+   ,dtf::error::wrong_dt_sep
+   ,"12345678901234567"
+)
+,make_wrong_val(
+    7
+   ,dtf::error::wrong_dt_sep
+   ,"2019X01X08X165023"
+)
+,make_wrong_val(
+    8
+   ,dtf::error::wrong_yyyy_mm_dd_nosep
+   ,"2019X108T165023"
+)
+,make_wrong_val(
+    9
+   ,dtf::error::wrong_yyyy_mm_dd_nosep
+   ,"XXXX0108T165023"
+)
+,make_wrong_val(
+    10
+   ,dtf::error::wrong_yyyy_mm_dd_nosep
+   ,"201901X8T165023"
+)
+,make_wrong_val(
+    11
+   ,dtf::error::wrong_dd_mm_yyyy_nosep
+   ,"08X12019t165023"
+)
+,make_wrong_val(
+    12
+   ,dtf::error::wrong_dd_mm_yyyy_nosep
+   ,"XX012019t165023"
+)
+,make_wrong_val(
+    13
+   ,dtf::error::wrong_dd_mm_yyyy_nosep
+   ,"0801201Xt165023"
+)
+,make_wrong_val(
+    14
+   ,dtf::error::wrong_dd_mm_yyyy_sep
+   ,"0X-01-2019T16:50:23"
+)
+,make_wrong_val(
+    15
+   ,dtf::error::wrong_dd_mm_yyyy_sep
+   ,"08-0X-2019T16:50:23"
+)
+,make_wrong_val(
+    16
+   ,dtf::error::wrong_dd_mm_yyyy_sep
+   ,"08-01-X019T16:50:23"
+)
+,make_wrong_val(
+    17
+   ,dtf::error::wrong_yyyy_mm_dd_sep
+   ,"201X-01-08T16:50:23"
+)
+,make_wrong_val(
+    18
+   ,dtf::error::wrong_yyyy_mm_dd_sep
+   ,"2019-0X-08T16:50:23"
+)
+,make_wrong_val(
+    19
+   ,dtf::error::wrong_yyyy_mm_dd_sep
+   ,"2019-01-X8T16:50:23"
+)
+,make_wrong_val(
+    20
+   ,dtf::error::wrong_time_sep
+   ,"2019-01-08T1X:50:23"
+)
+,make_wrong_val(
+    21
+   ,dtf::error::wrong_time_sep
+   ,"2019-01-08T16:X0:23"
+)
+,make_wrong_val(
+    22
+   ,dtf::error::wrong_time_sep
+   ,"2019-01-08T16:50:X3"
+)
+,make_wrong_val(
+    23
+   ,dtf::error::wrong_time_nosep
+   ,"20190108T1X5023"
+)
+,make_wrong_val(
+    24
+   ,dtf::error::wrong_time_nosep
+   ,"20190108T16X023"
+)
+,make_wrong_val(
+    25
+   ,dtf::error::wrong_time_nosep
+   ,"20190108T1650X3"
+)
+,make_wrong_val(
+    26
+   ,dtf::error::wrong_dt_end_char
+   ,"2019-01-08T16:50:23X006"
+)
+,make_wrong_val(
+    27
+   ,dtf::error::wrong_dt_end_char
+   ,"2019-01-08T16:50:23,006"
+)
+,make_wrong_val(
+    28
+   ,dtf::error::wrong_dt_end_char
+   ,"20190108T165023X006"
+)
+,make_wrong_val(
+    29
+   ,dtf::error::wrong_num_of_secs_fractions
+   ,"2019-01-08T16:50:23.00"
+)
+,make_wrong_val(
+    30
+   ,dtf::error::wrong_num_of_secs_fractions
+   ,"2019-01-08T16:50:23.0000"
+)
+,make_wrong_val(
+    31
+   ,dtf::error::wrong_num_of_secs_fractions
+   ,"2019-01-08T16:50:23.00000"
+)
+,make_wrong_val(
+    32
+   ,dtf::error::wrong_ms_digits
+   ,"2019-01-08T16:50:23.X06"
+)
+,make_wrong_val(
+    33
+   ,dtf::error::wrong_ms_digits
+   ,"2019-01-08T16:50:23.0X6"
+)
+,make_wrong_val(
+    34
+   ,dtf::error::wrong_ms_digits
+   ,"2019-01-08T16:50:23.00X"
+)
+,make_wrong_val(
+    35
+   ,dtf::error::wrong_us_digits
+   ,"2019-01-08T16:50:23.X06057"
+)
+,make_wrong_val(
+    36
+   ,dtf::error::wrong_us_digits
+   ,"2019-01-08T16:50:23.006X57"
+)
+,make_wrong_val(
+    37
+   ,dtf::error::wrong_us_digits
+   ,"2019-01-08T16:50:23.00605X"
+)
+,make_wrong_val(
+    38
+   ,dtf::error::wrong_ns_digits
+   ,"2019-01-08T16:50:23.X06057057"
+)
+,make_wrong_val(
+    39
+   ,dtf::error::wrong_ns_digits
+   ,"2019-01-08T16:50:23.006057X57"
+)
+,make_wrong_val(
+    40
+   ,dtf::error::wrong_ns_digits
+   ,"2019-01-08T16:50:23.00605705X"
+)

@@ -56,8 +56,8 @@ enum flags: std::uint32_t {
     ,date_sep_dash     = 1u << 2u  // 2018-12-11/yyyy-mm-dd
     ,date_sep_point    = 1u << 3u  // 2018.12.11/yyyy.mm.dd
     ,date_sep_empty    = 1u << 4u  // 20181211/yyyymmdd
-    ,dt_sep_T          = 1u << 5u  // 2018-12-11T13:58:59 (required when `yyyy_mm_dd || date_sep_empty`)
-    ,dt_sep_t          = 1u << 6u  // 2018-12-11t13:58:59 (required when `dd_mm_yyyy || date_sep_empty`)
+    ,dt_sep_T          = 1u << 5u  // 20181211T13:58:59 (required when `yyyy_mm_dd | date_sep_empty`)
+    ,dt_sep_t          = 1u << 6u  // 11122018t13:58:59 (required when `dd_mm_yyyy | date_sep_empty`)
     ,dt_sep_space      = 1u << 7u  // 2018-12-11 13:58:59
     ,dt_sep_underscore = 1u << 8u  // 2018-12-11_13:58:59
     ,dt_sep_slash      = 1u << 9u  // 2018-12-11/13:58:59
@@ -97,11 +97,11 @@ enum {
 };
 
 constexpr auto default_flags =
-    flags::yyyy_mm_dd |
-    flags::date_sep_dash |
-    flags::dt_sep_slash |
-    flags::time_sep_colon |
-    flags::msecs
+      flags::yyyy_mm_dd
+    | flags::date_sep_dash
+    | flags::dt_sep_slash
+    | flags::time_sep_colon
+    | flags::msecs
 ;
 
 // format as number in C-string representation.
@@ -124,10 +124,28 @@ std::string dt_str(std::uint32_t flags = default_flags, int offset_in_hours = 0)
 
 /*************************************************************************************************/
 
-// gets the respective flags using given date-time string (DTF format only!)
-std::uint32_t get_flags(const char *buf, std::size_t n);
+enum error: std::uint32_t {
+     ok = 0u
+    ,too_short
+    ,too_long
+    ,wrong_dt_sep
+    ,wrong_yyyy_mm_dd_nosep
+    ,wrong_dd_mm_yyyy_nosep
+    ,wrong_dd_mm_yyyy_sep
+    ,wrong_yyyy_mm_dd_sep
+    ,wrong_time_sep
+    ,wrong_time_nosep
+    ,wrong_dt_end_char // the latest char in date-time string, '\0' or '.'
+    ,wrong_num_of_secs_fractions
+    ,wrong_ms_digits
+    ,wrong_us_digits
+    ,wrong_ns_digits
+};
 
-std::uint32_t get_flags(const std::string &str);
+// gets the respective flags using given date-time string (DTF format only!)
+error get_flags(std::uint32_t *flags, const char *buf, std::size_t n);
+
+error get_flags(std::uint32_t *flags, const std::string &str);
 
 // dump the flags
 std::ostream& dump_flags(std::ostream &os, std::uint32_t flags, bool with_dtf_prefix = false);
@@ -170,17 +188,14 @@ namespace dtf {
 #define __DTF_YEARS_PER_ERA         400
 
 #define __DTF_DHMS(p, v) \
-    *p++ = static_cast<char>((v / 10) % 10) + '0'; \
-    *p++ = static_cast<char>((v % 10)) + '0';
+    std::memcpy(p, __dtf_digits_lut + (v) * 2, 2); p += 2;
 
 #define __DTF_YEAR(p, v) \
-    *p++ = static_cast<char>((v / 1000) % 10) + '0'; \
-    *p++ = static_cast<char>((v / 100) % 10) + '0'; \
-    __DTF_DHMS(p, v)
+    std::memcpy(p, __dtf_digits_lut + ((v) / 100) * 2, 2); p += 2; \
+    std::memcpy(p, __dtf_digits_lut + ((v) % 100) * 2, 2); p += 2;
 
 #define __DTF_MONTH(p, v) \
-    *p++ = static_cast<char>(((v + 1) / 10) % 10) + '0'; \
-    *p++ = static_cast<char>(((v + 1)) % 10) + '0';
+    std::memcpy(p, __dtf_digits_lut + ((v) + 1) * 2, 2); p += 2;
 
 #define __DTF_DATE_SEP_IS_DASH(ch) (ch == '-')
 #define __DTF_DATE_SEP_IS_POINT(ch) (ch == '.')
@@ -241,7 +256,9 @@ namespace dtf {
 
 #define __DTF_IS_TIME_SEP_VALID(p) \
     (__DTF_IS_DIGIT(p[0]) && __DTF_IS_DIGIT(p[1]) \
+        && __DTF_IS_TIME_SEPARATOR(p[2]) \
         && __DTF_IS_DIGIT(p[3]) && __DTF_IS_DIGIT(p[4]) \
+        && __DTF_IS_TIME_SEPARATOR(p[5]) \
         && __DTF_IS_DIGIT(p[6]) && __DTF_IS_DIGIT(p[7]) \
     )
 
@@ -317,6 +334,21 @@ static void utoa(char *ptr, std::size_t n, std::uint64_t v) {
     }
 }
 
+static void utoa_fixed(char *ptr, std::uint32_t width, std::uint32_t v) {
+    char *p = ptr + width;
+    switch ( width ) {
+        case 9: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 8: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 7: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 6: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 5: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 4: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 3: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 2: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
+        case 1: *--p = static_cast<char>('0'+(v % 10));
+    }
+}
+
 /*************************************************************************************************/
 
 inline std::size_t to_chars(char *buf, std::uint64_t ts, std::uint32_t f) {
@@ -353,46 +385,41 @@ inline std::string to_str(std::uint32_t f, int offset_in_hours) {
 /*************************************************************************************************/
 
 inline std::size_t to_dt_chars(char *ptr, std::uint64_t ts, std::uint32_t f) {
+    static const char __dtf_digits_lut[200] = {
+         '0','0','0','1','0','2','0','3','0','4','0','5','0','6','0','7','0','8','0','9'
+        ,'1','0','1','1','1','2','1','3','1','4','1','5','1','6','1','7','1','8','1','9'
+        ,'2','0','2','1','2','2','2','3','2','4','2','5','2','6','2','7','2','8','2','9'
+        ,'3','0','3','1','3','2','3','3','3','4','3','5','3','6','3','7','3','8','3','9'
+        ,'4','0','4','1','4','2','4','3','4','4','4','5','4','6','4','7','4','8','4','9'
+        ,'5','0','5','1','5','2','5','3','5','4','5','5','5','6','5','7','5','8','5','9'
+        ,'6','0','6','1','6','2','6','3','6','4','6','5','6','6','6','7','6','8','6','9'
+        ,'7','0','7','1','7','2','7','3','7','4','7','5','7','6','7','7','7','8','7','9'
+        ,'8','0','8','1','8','2','8','3','8','4','8','5','8','6','8','7','8','8','8','9'
+        ,'9','0','9','1','9','2','9','3','9','4','9','5','9','6','9','7','9','8','9','9'
+    };
+    // date_sep: (f>>2)&0x7 -> 1='-', 2='.', 4='~'(empty)
+    static const char __dtf_date_sep_lut[5] = {0, '-', '.', 0, '~'};
+    // dt_sep: (f>>5)&0x1F -> 1='T', 2='t', 4=' ', 8='_', 16='/'
+    static const char __dtf_dt_sep_lut[17] = {0, 'T', 't', 0, ' ', 0, 0, 0, '_', 0, 0, 0, 0, 0, 0, 0, '/'};
+    // time_sep: (f>>10)&0x7 -> 1=':', 2='.', 4='~'(empty)
+    static const char __dtf_time_sep_lut[5] = {0, ':', '.', 0, '~'};
+
     constexpr auto date_fmt_mask = yyyy_mm_dd | dd_mm_yyyy;
     assert(f & date_fmt_mask && "the date format MUST be specified");
     constexpr auto time_prec_mask = secs | msecs | usecs | nsecs;
     assert(f & time_prec_mask && "the time precision MUST be specified");
 
     constexpr char empty_char = '~';
-    constexpr char no_sep_specified = '`';
-    const char datesep = (f & flags::date_sep_dash)
-        ? '-'
-        : (f & flags::date_sep_point)
-            ? '.'
-            : (f & flags::date_sep_empty)
-                ? empty_char
-                : no_sep_specified
-    ;
-    assert(datesep != no_sep_specified && "the separator type for date MUST be specified!");
 
-    const char timesep = (f & flags::time_sep_colon)
-        ? ':'
-        : (f & flags::time_sep_point)
-            ? '.'
-            : (f & flags::time_sep_empty)
-                ? empty_char
-                : no_sep_specified
-    ;
-    assert(timesep != no_sep_specified && "the separator type for time MUST be specified!");
+    const char datesep = __dtf_date_sep_lut[(f >> 2) & 0x7];
+    assert(datesep && "the separator type for date MUST be specified!");
 
-    const char dtsep = (f & flags::dt_sep_T)
-        ? 'T'
-        : (f & flags::dt_sep_t)
-            ? 't'
-            : (f & flags::dt_sep_space)
-                ? ' '
-                : (f & flags::dt_sep_underscore)
-                    ? '_'
-                    : (f & flags::dt_sep_slash)
-                        ? '/'
-                        : no_sep_specified
-    ;
-    assert(dtsep != no_sep_specified && "the separator type for date-time MUST be specified!");
+    const char dtsep = __dtf_dt_sep_lut[(f >> 5) & 0x1F];
+    assert(dtsep && "the separator type for date-time MUST be specified!");
+
+    const char timesep = __dtf_time_sep_lut[(f >> 10) & 0x7];
+    assert(timesep && "the separator type for time MUST be specified!");
+
     assert(datesep == empty_char ? (dtsep == 'T' || dtsep == 't') : true);
 
     std::uint32_t ss = ts / __DTF_NSECS_PER_SEC;
@@ -446,26 +473,21 @@ inline std::size_t to_dt_chars(char *ptr, std::uint64_t ts, std::uint32_t f) {
     if ( timesep != empty_char ) { *p++ = timesep; }
     __DTF_DHMS(p, secs);
 
-    const auto pi = (f & flags::secs)
-        ? std::make_pair(static_cast<std::uint32_t>(ps / 1000000000), 0u)
-        : (f & flags::msecs)
-            ? std::make_pair(static_cast<std::uint32_t>(ps / 1000000), 3u)
-            : (f & flags::usecs)
-                ? std::make_pair(static_cast<std::uint32_t>(ps / 1000), 6u)
-                : std::make_pair(ps, 9u)
-    ;
-    if ( pi.second ) {
-        *p++ = '.';
+    std::uint32_t frac_val;
+    std::uint32_t frac_width;
+    if ( f & flags::secs )       { frac_val = 0;              frac_width = 0; }
+    else if ( f & flags::msecs ) { frac_val = ps / 1000000;   frac_width = 3; }
+    else if ( f & flags::usecs ) { frac_val = ps / 1000;      frac_width = 6; }
+    else                         { frac_val = ps;              frac_width = 9; }
 
-        auto n = num_chars(pi.first);
-        for ( auto cnt = pi.second - n; cnt; --cnt ) {
-            *p++ = '0';
-        }
-        utoa(p, n, pi.first);
-        p += n;
+    if ( frac_width ) {
+        *p++ = '.';
+        utoa_fixed(p, frac_width, frac_val);
+        p += frac_width;
     }
 
     assert((p - ptr) > 0);
+
     return static_cast<std::size_t>(p - ptr);
 }
 
@@ -488,11 +510,14 @@ inline std::string dt_str(std::uint32_t f, int offset_in_hours) {
 
 /*************************************************************************************************/
 
-inline std::uint32_t get_flags(const char *buf, std::size_t len) {
-    std::uint32_t res{};
+inline error get_flags(std::uint32_t *flags, const char *buf, std::size_t len) {
+    *flags = 0u;
 
-    if ( len < 15 || len > 29 ) {
-        return 0u;
+    if ( len < 15 ) {
+        return error::too_short;
+    }
+    if ( len > 29 ) {
+        return error::too_long;
     }
 
     const auto ch2 = buf[2];
@@ -505,15 +530,17 @@ inline std::uint32_t get_flags(const char *buf, std::size_t len) {
             ? 10u
             : 0u
     ;
-    assert(dt_sep_pos != 0);
+    if ( dt_sep_pos == 0 ) {
+        return error::wrong_dt_sep;
+    }
 
     // date sep processing
     if ( dt_sep_pos == 8u ) {
         // date without seperators
         bool dt_sep_T = __DTF_DATETIME_SEP_IS_T(ch8);
         bool dt_sep_t = __DTF_DATETIME_SEP_IS_t(ch8);
-        res |= flags::date_sep_empty;
-        res |= dt_sep_T
+        (*flags) |= flags::date_sep_empty;
+        (*flags) |= dt_sep_T
             ? flags::dt_sep_T
             : dt_sep_t
                 ? flags::dt_sep_t
@@ -524,42 +551,46 @@ inline std::uint32_t get_flags(const char *buf, std::size_t len) {
                         : flags::dt_sep_slash
         ;
 
-        if ( dt_sep_T ) {
-            bool valid = __DTF_IS_YYYY_MM_DD_NOSEP_VALID(buf);
-            if ( !valid ) {
-                return 0u;
-            }
+        if ( dt_sep_T || dt_sep_t ) {
+            if ( dt_sep_T ) {
+                bool valid = __DTF_IS_YYYY_MM_DD_NOSEP_VALID(buf);
+                if ( !valid ) {
+                    return error::wrong_yyyy_mm_dd_nosep;
+                }
 
-            res |= flags::yyyy_mm_dd;
+                (*flags) |= flags::yyyy_mm_dd;
+            } else {
+                bool valid = __DTF_IS_DD_MM_YYYY_NOSEP_VALID(buf);
+                if ( !valid ) {
+                    return error::wrong_dd_mm_yyyy_nosep;
+                }
+
+                (*flags) |= flags::dd_mm_yyyy;
+            }
         } else {
-            bool valid = __DTF_IS_DD_MM_YYYY_NOSEP_VALID(buf);
-            if ( !valid ) {
-                return 0u;
-            }
-
-            res |= flags::dd_mm_yyyy;
+            (*flags) |= flags::yyyy_mm_dd;
         }
     } else {
         // date WITH separators
         if ( __DTF_IS_DATE_SEPARATOR(ch2) ) {
             bool valid = __DTF_IS_DD_MM_YYYY_SEP_VALID(buf);
             if ( !valid ) {
-                return 0u;
+                return error::wrong_dd_mm_yyyy_sep;
             }
 
-            res |= flags::dd_mm_yyyy;
-            res |= __DTF_DATE_SEP_IS_DASH(ch2)
+            (*flags) |= flags::dd_mm_yyyy;
+            (*flags) |= __DTF_DATE_SEP_IS_DASH(ch2)
                 ? flags::date_sep_dash
                 : flags::date_sep_point
             ;
         } else if ( __DTF_IS_DATE_SEPARATOR(ch4) ) {
             bool valid = __DTF_IS_YYYY_MM_DD_SEP_VALID(buf);
             if ( !valid ) {
-                return  0u;
+                return error::wrong_yyyy_mm_dd_sep;
             }
 
-            res |= flags::yyyy_mm_dd;
-            res |= __DTF_DATE_SEP_IS_DASH(ch4)
+            (*flags) |= flags::yyyy_mm_dd;
+            (*flags) |= __DTF_DATE_SEP_IS_DASH(ch4)
                 ? flags::date_sep_dash
                 : flags::date_sep_point
             ;
@@ -567,7 +598,7 @@ inline std::uint32_t get_flags(const char *buf, std::size_t len) {
             assert(!"unreachable!");
         }
 
-        res |= __DTF_DATETIME_SEP_IS_T(ch10)
+        (*flags) |= __DTF_DATETIME_SEP_IS_T(ch10)
             ? flags::dt_sep_T
             : __DTF_DATETIME_SEP_IS_t(ch10)
                 ? flags::dt_sep_t
@@ -586,10 +617,10 @@ inline std::uint32_t get_flags(const char *buf, std::size_t len) {
         const char *ptr = buf + dt_sep_pos + 1;
         bool valid = __DTF_IS_TIME_SEP_VALID(ptr);
         if ( !valid ) {
-            return 0u;
+            return error::wrong_time_sep;
         }
 
-        res |= __DTF_TIME_SEP_IS_COLON(buf[dt_sep_pos + 1 + 2])
+        (*flags) |= __DTF_TIME_SEP_IS_COLON(buf[dt_sep_pos + 1 + 2])
             ? flags::time_sep_colon
             : flags::time_sep_point
         ;
@@ -607,10 +638,10 @@ inline std::uint32_t get_flags(const char *buf, std::size_t len) {
         const char *ptr = buf + dt_sep_pos + 1;
         bool valid = __DTF_IS_TIME_NOSEP_VALID(ptr);
         if ( !valid ) {
-            return 0u;
+            return error::wrong_time_nosep;
         }
 
-        res |= flags::time_sep_empty;
+        (*flags) |= flags::time_sep_empty;
         eos_time_pos = dt_sep_pos
             + 1 // next after date-time separator
             + 2 // skip first two chars (hours)
@@ -619,49 +650,48 @@ inline std::uint32_t get_flags(const char *buf, std::size_t len) {
         ;
     }
 
-    char eos_char = buf[eos_time_pos];
+    const char eos_char = buf[eos_time_pos];
     if ( eos_char == '.' ) {
         auto chars_left = len - eos_time_pos - 1;
         if ( chars_left % 3 != 0 ) {
-            return 0u;
+            return error::wrong_num_of_secs_fractions;
         }
 
         const char *time_fract = buf + eos_time_pos + 1;
         switch ( chars_left ) {
             case 3: {
                 if ( ! __DTF_IS_DIGIT_3(time_fract) ) {
-                    return 0u;
+                    return error::wrong_ms_digits;
                 }
-                res |= flags::msecs;
+                (*flags) |= flags::msecs;
                 break;
             }
             case 6: {
                 if ( ! __DTF_IS_DIGIT_6(time_fract) ) {
-                    return 0u;
+                    return error::wrong_us_digits;
                 }
-                res |= flags::usecs;
+                (*flags) |= flags::usecs;
                 break;
             }
             case 9: {
                 if ( ! __DTF_IS_DIGIT_9(time_fract) ) {
-                    return 0u;
+                    return error::wrong_ns_digits;
                 }
-                res |= flags::nsecs;
+                (*flags) |= flags::nsecs;
                 break;
             }
-            default: {
-                return 0u;
-            }
         }
+    } else if ( eos_char == '\0' ) {
+        (*flags) |= flags::secs;
     } else {
-        res |= flags::secs;
+        return error::wrong_dt_end_char;
     }
 
-    return res;
+    return error::ok;
 }
 
-inline std::uint32_t get_flags(const std::string &str) {
-    return get_flags(str.c_str(), str.length());
+inline error get_flags(std::uint32_t *flags, const std::string &str) {
+    return get_flags(flags, str.c_str(), str.length());
 }
 
 /*************************************************************************************************/

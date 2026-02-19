@@ -40,7 +40,10 @@
 /*************************************************************************************************/
 
 std::string dtf_format(const void *ptr) {
-    return dtf::to_dt_str(*static_cast<const std::uint64_t *>(ptr), dtf::yyyy_mm_dd|dtf::date_sep_point|dtf::dt_sep_slash|dtf::time_sep_colon|dtf::secs);
+    return dtf::to_dt_str(
+        *static_cast<const std::uint64_t *>(ptr)
+        ,dtf::yyyy_mm_dd|dtf::date_sep_point|dtf::dt_sep_slash|dtf::time_sep_colon|dtf::secs
+    );
 }
 
 std::string strftime_format(const void *ptr) {
@@ -92,12 +95,14 @@ result measure(F &&f) {
 /*************************************************************************************************/
 
 std::uint64_t avg_time(const std::vector<result> &v) {
-    return std::accumulate(
+    auto sum = std::accumulate(
          v.begin()
         ,v.end()
-        ,std::uint64_t(0)
+        ,std::uint64_t{}
         ,[](std::uint64_t init, const result &v){ return init + v.time; }
     );
+
+    return sum / v.size();
 }
 
 /*************************************************************************************************/
@@ -124,7 +129,7 @@ int main() {
     strftime_res.reserve(iterations);
     put_time_res.reserve(iterations);
 
-    for (  auto idx = 0u; idx != iterations; ++idx ) {
+    for (  auto idx = iterations; idx; --idx ) {
         dtf_res.push_back(measure([ts](){ return dtf_format(&ts); }));
         strftime_res.push_back(measure([tm](){ return strftime_format(tm); }));
         put_time_res.push_back(measure([tm](){ return put_time_format(tm); }));
