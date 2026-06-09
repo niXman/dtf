@@ -61,13 +61,14 @@ enum flags: std::uint32_t {
     ,dt_sep_space      = 1u << 7u  // 2018-12-11 13:58:59
     ,dt_sep_underscore = 1u << 8u  // 2018-12-11_13:58:59
     ,dt_sep_slash      = 1u << 9u  // 2018-12-11/13:58:59
-    ,time_sep_colon    = 1u << 10u // 13:58:59/hh:mm:ss
-    ,time_sep_point    = 1u << 11u // 13.58.59/hh.mm.ss
-    ,time_sep_empty    = 1u << 12u // 135859/hhmmss
-    ,secs              = 1u << 13u // seconds resolution
-    ,msecs             = 1u << 14u // milliseconds resolution
-    ,usecs             = 1u << 15u // microseconds resolution
-    ,nsecs             = 1u << 16u // nanoseconds resolution
+    ,dt_sep_dash       = 1u << 10u // 2018.12.11-13:58:59
+    ,time_sep_colon    = 1u << 11u // 13:58:59/hh:mm:ss
+    ,time_sep_point    = 1u << 12u // 13.58.59/hh.mm.ss
+    ,time_sep_empty    = 1u << 13u // 135859/hhmmss
+    ,secs              = 1u << 14u // seconds resolution
+    ,msecs             = 1u << 15u // milliseconds resolution
+    ,usecs             = 1u << 16u // microseconds resolution
+    ,nsecs             = 1u << 17u // nanoseconds resolution
 };
 
 // NOTE:
@@ -212,6 +213,7 @@ namespace dtf {
 #define __DTF_DATETIME_SEP_IS_SPACE(ch) (ch == ' ')
 #define __DTF_DATETIME_SEP_IS_UNDERSCORE(ch) (ch == '_')
 #define __DTF_DATETIME_SEP_IS_SLASH(ch) (ch == '/')
+#define __DTF_DATETIME_SEP_IS_DASH(ch) (ch == '-')
 
 #define __DTF_IS_DT_SEPARATOR(ch) \
     (__DTF_DATETIME_SEP_IS_T(ch) \
@@ -219,6 +221,7 @@ namespace dtf {
         || __DTF_DATETIME_SEP_IS_SPACE(ch) \
         || __DTF_DATETIME_SEP_IS_UNDERSCORE(ch) \
         || __DTF_DATETIME_SEP_IS_SLASH(ch) \
+        || __DTF_DATETIME_SEP_IS_DASH(ch) \
     )
 
 #define __DTF_IS_DIGIT(ch) (ch >= '0' && ch <= '9')
@@ -399,9 +402,12 @@ inline std::size_t to_dt_chars(char *ptr, std::uint64_t ts, std::uint32_t f) {
     };
     // date_sep: (f>>2)&0x7 -> 1='-', 2='.', 4='~'(empty)
     static const char __dtf_date_sep_lut[5] = {0, '-', '.', 0, '~'};
-    // dt_sep: (f>>5)&0x1F -> 1='T', 2='t', 4=' ', 8='_', 16='/'
-    static const char __dtf_dt_sep_lut[17] = {0, 'T', 't', 0, ' ', 0, 0, 0, '_', 0, 0, 0, 0, 0, 0, 0, '/'};
-    // time_sep: (f>>10)&0x7 -> 1=':', 2='.', 4='~'(empty)
+    // dt_sep: (f>>5)&0x3F -> 1='T', 2='t', 4=' ', 8='_', 16='/', 32='-'
+    static const char __dtf_dt_sep_lut[33] = {
+         0, 'T', 't', 0, ' ', 0, 0, 0, '_', 0, 0, 0, 0, 0, 0, 0, '/'
+        ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '-'
+    };
+    // time_sep: (f>>11)&0x7 -> 1=':', 2='.', 4='~'(empty)
     static const char __dtf_time_sep_lut[5] = {0, ':', '.', 0, '~'};
 
     constexpr auto date_fmt_mask = yyyy_mm_dd | dd_mm_yyyy;
@@ -414,10 +420,10 @@ inline std::size_t to_dt_chars(char *ptr, std::uint64_t ts, std::uint32_t f) {
     const char datesep = __dtf_date_sep_lut[(f >> 2) & 0x7];
     assert(datesep && "the separator type for date MUST be specified!");
 
-    const char dtsep = __dtf_dt_sep_lut[(f >> 5) & 0x1F];
+    const char dtsep = __dtf_dt_sep_lut[(f >> 5) & 0x3F];
     assert(dtsep && "the separator type for date-time MUST be specified!");
 
-    const char timesep = __dtf_time_sep_lut[(f >> 10) & 0x7];
+    const char timesep = __dtf_time_sep_lut[(f >> 11) & 0x7];
     assert(timesep && "the separator type for time MUST be specified!");
 
     assert(datesep == empty_char ? (dtsep == 'T' || dtsep == 't') : true);
@@ -548,7 +554,9 @@ inline error get_flags(std::uint32_t *flags, const char *buf, std::size_t len) {
                     ? flags::dt_sep_space
                     : __DTF_DATETIME_SEP_IS_UNDERSCORE(ch8)
                         ? flags::dt_sep_underscore
-                        : flags::dt_sep_slash
+                        : __DTF_DATETIME_SEP_IS_DASH(ch8)
+                            ? flags::dt_sep_dash
+                            : flags::dt_sep_slash
         ;
 
         if ( dt_sep_T || dt_sep_t ) {
@@ -606,7 +614,9 @@ inline error get_flags(std::uint32_t *flags, const char *buf, std::size_t len) {
                     ? flags::dt_sep_space
                     : __DTF_DATETIME_SEP_IS_UNDERSCORE(ch10)
                         ? flags::dt_sep_underscore
-                        : flags::dt_sep_slash
+                        : __DTF_DATETIME_SEP_IS_DASH(ch10)
+                            ? flags::dt_sep_dash
+                            : flags::dt_sep_slash
         ;
     }
 
@@ -708,6 +718,7 @@ inline std::ostream& dump_flags(std::ostream &os, std::uint32_t flags, bool with
         ,"dt_sep_space"
         ,"dt_sep_underscore"
         ,"dt_sep_slash"
+        ,"dt_sep_dash"
         ,"time_sep_colon"
         ,"time_sep_point"
         ,"time_sep_empty"
@@ -767,6 +778,7 @@ inline std::ostream& dump_flags(std::ostream &os, std::uint32_t flags, bool with
 #undef __DTF_DATETIME_SEP_IS_SPACE
 #undef __DTF_DATETIME_SEP_IS_UNDERSCORE
 #undef __DTF_DATETIME_SEP_IS_SLASH
+#undef __DTF_DATETIME_SEP_IS_DASH
 #undef __DTF_IS_DT_SEPARATOR
 #undef __DTF_IS_DIGIT
 #undef __DTF_IS_DIGIT_3
