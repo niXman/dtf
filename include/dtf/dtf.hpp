@@ -189,14 +189,14 @@ namespace dtf {
 #define __DTF_YEARS_PER_ERA         400
 
 #define __DTF_DHMS(p, v) \
-    std::memcpy(p, __dtf_digits_lut + (v) * 2, 2); p += 2;
+    std::memcpy(p, digits_lut + (v) * 2, 2); p += 2;
 
 #define __DTF_YEAR(p, v) \
-    std::memcpy(p, __dtf_digits_lut + ((v) / 100) * 2, 2); p += 2; \
-    std::memcpy(p, __dtf_digits_lut + ((v) % 100) * 2, 2); p += 2;
+    std::memcpy(p, digits_lut + ((v) / 100) * 2, 2); p += 2; \
+    std::memcpy(p, digits_lut + ((v) % 100) * 2, 2); p += 2;
 
 #define __DTF_MONTH(p, v) \
-    std::memcpy(p, __dtf_digits_lut + ((v) + 1) * 2, 2); p += 2;
+    std::memcpy(p, digits_lut + ((v) + 1) * 2, 2); p += 2;
 
 #define __DTF_DATE_SEP_IS_DASH(ch) (ch == '-')
 #define __DTF_DATE_SEP_IS_POINT(ch) (ch == '.')
@@ -300,9 +300,22 @@ inline std::uint64_t from_time_t(std::time_t ts) {
 
 /*************************************************************************************************/
 
+static const char digits_lut[200] = {
+     '0','0','0','1','0','2','0','3','0','4','0','5','0','6','0','7','0','8','0','9'
+    ,'1','0','1','1','1','2','1','3','1','4','1','5','1','6','1','7','1','8','1','9'
+    ,'2','0','2','1','2','2','2','3','2','4','2','5','2','6','2','7','2','8','2','9'
+    ,'3','0','3','1','3','2','3','3','3','4','3','5','3','6','3','7','3','8','3','9'
+    ,'4','0','4','1','4','2','4','3','4','4','4','5','4','6','4','7','4','8','4','9'
+    ,'5','0','5','1','5','2','5','3','5','4','5','5','5','6','5','7','5','8','5','9'
+    ,'6','0','6','1','6','2','6','3','6','4','6','5','6','6','6','7','6','8','6','9'
+    ,'7','0','7','1','7','2','7','3','7','4','7','5','7','6','7','7','7','8','7','9'
+    ,'8','0','8','1','8','2','8','3','8','4','8','5','8','6','8','7','8','8','8','9'
+    ,'9','0','9','1','9','2','9','3','9','4','9','5','9','6','9','7','9','8','9','9'
+};
+
 static std::size_t num_chars(std::size_t v) {
     std::size_t n = 1;
-    v = (v >= 100000000000000000ull) ? ((n += 17), (v / 100000000000000000ull)) : v;
+    v = (v >= 10000000000000000ull) ? ((n += 16), (v / 10000000000000000ull)) : v;
     v = (v >= 100000000ull) ? ((n += 8), (v / 100000000ull)) : v;
     v = (v >= 10000ull) ? ((n += 4), (v / 10000ull)) : v;
     v = (v >= 100ull) ? ((n += 2), (v / 100ull)) : v;
@@ -312,43 +325,28 @@ static std::size_t num_chars(std::size_t v) {
 }
 
 static void utoa(char *ptr, std::size_t n, std::uint64_t v) {
-    char *p = ptr + n - 1;
-    switch ( n ) {
-        case 20: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 19: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 18: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 17: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 16: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 15: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 14: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 13: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 12: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 11: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 10: *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 9 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 8 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 7 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 6 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 5 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 4 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 3 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 2 : *p-- = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 1 : *p-- = static_cast<char>('0'+(v % 10));
+    char *p = ptr + n;
+    while ( n >= 2 ) {
+        p -= 2;
+        std::memcpy(p, digits_lut + (v % 100) * 2, 2);
+        v /= 100;
+        n -= 2;
+    }
+    if ( n ) {
+        *--p = static_cast<char>('0' + v);
     }
 }
 
 static void utoa_fixed(char *ptr, std::uint32_t width, std::uint32_t v) {
     char *p = ptr + width;
-    switch ( width ) {
-        case 9: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 8: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 7: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 6: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 5: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 4: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 3: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 2: *--p = static_cast<char>('0'+(v % 10)); v /= 10; __DTF_FALLTHROUGH;
-        case 1: *--p = static_cast<char>('0'+(v % 10));
+    while ( width >= 2 ) {
+        p -= 2;
+        std::memcpy(p, digits_lut + (v % 100) * 2, 2);
+        v /= 100;
+        width -= 2;
+    }
+    if ( width ) {
+        *--p = static_cast<char>('0' + v);
     }
 }
 
@@ -388,65 +386,80 @@ inline std::string to_str(std::uint32_t f, int offset_in_hours) {
 /*************************************************************************************************/
 
 inline std::size_t to_dt_chars(char *ptr, std::uint64_t ts, std::uint32_t f) {
-    static const char __dtf_digits_lut[200] = {
-         '0','0','0','1','0','2','0','3','0','4','0','5','0','6','0','7','0','8','0','9'
-        ,'1','0','1','1','1','2','1','3','1','4','1','5','1','6','1','7','1','8','1','9'
-        ,'2','0','2','1','2','2','2','3','2','4','2','5','2','6','2','7','2','8','2','9'
-        ,'3','0','3','1','3','2','3','3','3','4','3','5','3','6','3','7','3','8','3','9'
-        ,'4','0','4','1','4','2','4','3','4','4','4','5','4','6','4','7','4','8','4','9'
-        ,'5','0','5','1','5','2','5','3','5','4','5','5','5','6','5','7','5','8','5','9'
-        ,'6','0','6','1','6','2','6','3','6','4','6','5','6','6','6','7','6','8','6','9'
-        ,'7','0','7','1','7','2','7','3','7','4','7','5','7','6','7','7','7','8','7','9'
-        ,'8','0','8','1','8','2','8','3','8','4','8','5','8','6','8','7','8','8','8','9'
-        ,'9','0','9','1','9','2','9','3','9','4','9','5','9','6','9','7','9','8','9','9'
-    };
     // date_sep: (f>>2)&0x7 -> 1='-', 2='.', 4='~'(empty)
-    static const char __dtf_date_sep_lut[5] = {0, '-', '.', 0, '~'};
+    static const char date_sep_lut[5] = {0, '-', '.', 0, '~'};
     // dt_sep: (f>>5)&0x3F -> 1='T', 2='t', 4=' ', 8='_', 16='/', 32='-'
-    static const char __dtf_dt_sep_lut[33] = {
+    static const char dt_sep_lut[33] = {
          0, 'T', 't', 0, ' ', 0, 0, 0, '_', 0, 0, 0, 0, 0, 0, 0, '/'
         ,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '-'
     };
     // time_sep: (f>>11)&0x7 -> 1=':', 2='.', 4='~'(empty)
-    static const char __dtf_time_sep_lut[5] = {0, ':', '.', 0, '~'};
+    static const char time_sep_lut[5] = {0, ':', '.', 0, '~'};
 
     constexpr auto date_fmt_mask = yyyy_mm_dd | dd_mm_yyyy;
     assert(f & date_fmt_mask && "the date format MUST be specified");
+    (void)date_fmt_mask;
     constexpr auto time_prec_mask = secs | msecs | usecs | nsecs;
     assert(f & time_prec_mask && "the time precision MUST be specified");
+    (void)time_prec_mask;
 
     constexpr char empty_char = '~';
 
-    const char datesep = __dtf_date_sep_lut[(f >> 2) & 0x7];
+    const char datesep = date_sep_lut[(f >> 2) & 0x7];
     assert(datesep && "the separator type for date MUST be specified!");
 
-    const char dtsep = __dtf_dt_sep_lut[(f >> 5) & 0x3F];
+    const char dtsep = dt_sep_lut[(f >> 5) & 0x3F];
     assert(dtsep && "the separator type for date-time MUST be specified!");
 
-    const char timesep = __dtf_time_sep_lut[(f >> 11) & 0x7];
+    const char timesep = time_sep_lut[(f >> 11) & 0x7];
     assert(timesep && "the separator type for time MUST be specified!");
 
     assert(datesep == empty_char ? (dtsep == 'T' || dtsep == 't') : true);
 
-    std::uint32_t ss = ts / __DTF_NSECS_PER_SEC;
-    std::uint32_t ps = ts % __DTF_NSECS_PER_SEC;
+    const std::uint32_t ss = ts / __DTF_NSECS_PER_SEC;
+    const std::uint32_t ps = ts % __DTF_NSECS_PER_SEC;
 
-    // based on: https://howardhinnant.github.io/date_algorithms.html#civil_from_days
-    int days = ss / __DTF_SECS_PER_DAY + __DTF_EPOCH_ADJUSTMENT_DAYS;
-    ss %= __DTF_SECS_PER_DAY;
-    std::size_t hours = ss / __DTF_SECS_PER_HOUR;
-    ss %= __DTF_SECS_PER_HOUR;
-    std::size_t mins = ss / __DTF_SECS_PER_MIN;
-    std::size_t secs = ss % __DTF_SECS_PER_MIN;
-    std::size_t era = (days >= 0 ? days : days - (__DTF_DAYS_PER_ERA - 1)) / __DTF_DAYS_PER_ERA;
-    std::size_t eraday = days - era * __DTF_DAYS_PER_ERA;
-    std::size_t erayear = (eraday - eraday / (__DTF_DAYS_PER_4_YEARS - 1) + eraday / __DTF_DAYS_PER_CENTURY -
-        eraday / (__DTF_DAYS_PER_ERA - 1)) / 365;
-    std::size_t yearday = eraday - (__DTF_DAYS_PER_YEAR * erayear + erayear / 4 - erayear / 100);
-    std::size_t month = (5 * yearday + 2) / 153;
-    std::size_t day = yearday - (153 * month + 2) / 5 + 1;
-    month += month < 10 ? 2 : -10;
-    std::size_t year = __DTF_ADJUSTED_EPOCH_YEAR + erayear + era * __DTF_YEARS_PER_ERA + static_cast<int>(month <= 1);
+    static thread_local std::uint32_t cached_ss = 0;
+    static thread_local bool cached_valid = false;
+    static thread_local std::size_t cached_year = 0, cached_month = 0, cached_day = 0;
+    static thread_local std::size_t cached_hours = 0, cached_mins = 0, cached_secs = 0;
+
+    std::size_t hours, mins, secs, year, month, day;
+    if ( cached_valid && ss == cached_ss ) {
+        year  = cached_year;
+        month = cached_month;
+        day   = cached_day;
+        hours = cached_hours;
+        mins  = cached_mins;
+        secs  = cached_secs;
+    } else {
+        // based on: https://howardhinnant.github.io/date_algorithms.html#civil_from_days
+        std::uint32_t rem = ss;
+        int days = rem / __DTF_SECS_PER_DAY + __DTF_EPOCH_ADJUSTMENT_DAYS;
+        rem %= __DTF_SECS_PER_DAY;
+        hours = rem / __DTF_SECS_PER_HOUR;
+        rem %= __DTF_SECS_PER_HOUR;
+        mins = rem / __DTF_SECS_PER_MIN;
+        secs = rem % __DTF_SECS_PER_MIN;
+        std::size_t era = (days >= 0 ? days : days - (__DTF_DAYS_PER_ERA - 1)) / __DTF_DAYS_PER_ERA;
+        std::size_t eraday = days - era * __DTF_DAYS_PER_ERA;
+        std::size_t erayear = (eraday - eraday / (__DTF_DAYS_PER_4_YEARS - 1) + eraday / __DTF_DAYS_PER_CENTURY -
+            eraday / (__DTF_DAYS_PER_ERA - 1)) / 365;
+        std::size_t yearday = eraday - (__DTF_DAYS_PER_YEAR * erayear + erayear / 4 - erayear / 100);
+        month = (5 * yearday + 2) / 153;
+        day = yearday - (153 * month + 2) / 5 + 1;
+        month += month < 10 ? 2 : -10;
+        year = __DTF_ADJUSTED_EPOCH_YEAR + erayear + era * __DTF_YEARS_PER_ERA + static_cast<int>(month <= 1);
+
+        cached_ss = ss;
+        cached_year = year;
+        cached_month = month;
+        cached_day = day;
+        cached_hours = hours;
+        cached_mins = mins;
+        cached_secs = secs;
+        cached_valid = true;
+    }
 
     char *p = ptr;
     if ( f & flags::yyyy_mm_dd ) {

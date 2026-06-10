@@ -46,8 +46,8 @@ assert(f == flags);
 ```
 # Benchmark
 ```
-dtf time     : 752177494 ns
-strftime time: 1548738218 ns
-put_time time: 4430988336 ns
-
+dtf  (cache hit) :   5.30 ns/call
+dtf  (cache miss):  11.90 ns/call
+strftime         :  65.00 ns/call
+put_time         : 329.00 ns/call
 ```

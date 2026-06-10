@@ -141,6 +141,7 @@ char get_dt_sep_char(std::uint32_t flags) {
         | dtf::dt_sep_space
         | dtf::dt_sep_underscore
         | dtf::dt_sep_slash
+        | dtf::dt_sep_dash
     ;
     const auto dt_sep = flags & dt_sep_mask;
     switch ( dt_sep ) {
@@ -149,6 +150,7 @@ char get_dt_sep_char(std::uint32_t flags) {
         case dtf::dt_sep_space: return ' ';
         case dtf::dt_sep_underscore: return '_';
         case dtf::dt_sep_slash: return '/';
+        case dtf::dt_sep_dash: return '-';
     }
     assert(!"unreachable");
     return '~';
@@ -188,7 +190,7 @@ void generate_good(std::vector<std::string> &dst) {
 
     const std::uint32_t date_fmts[] = {dtf::yyyy_mm_dd, dtf::dd_mm_yyyy};
     const std::uint32_t date_seps[] = {dtf::date_sep_dash, dtf::date_sep_point, dtf::date_sep_empty};
-    const std::uint32_t dt_seps[]   = {dtf::dt_sep_T, dtf::dt_sep_t, dtf::dt_sep_space, dtf::dt_sep_underscore, dtf::dt_sep_slash};
+    const std::uint32_t dt_seps[]   = {dtf::dt_sep_T, dtf::dt_sep_t, dtf::dt_sep_space, dtf::dt_sep_underscore, dtf::dt_sep_slash, dtf::dt_sep_dash};
     const std::uint32_t time_seps[] = {dtf::time_sep_colon, dtf::time_sep_point, dtf::time_sep_empty};
     const std::uint32_t time_precs[]= {dtf::secs, dtf::msecs, dtf::usecs, dtf::nsecs};
 

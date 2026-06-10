@@ -360,1224 +360,1512 @@ make_correct_val(
 )
 ,make_correct_val(
     60
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::secs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_colon, secs"
+   ,"2019-01-08-16:50:23"
+)
+,make_correct_val(
+    61
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::msecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_colon, msecs"
+   ,"2019-01-08-16:50:23.006"
+)
+,make_correct_val(
+    62
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::usecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_colon, usecs"
+   ,"2019-01-08-16:50:23.006057"
+)
+,make_correct_val(
+    63
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::nsecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_colon, nsecs"
+   ,"2019-01-08-16:50:23.006057057"
+)
+,make_correct_val(
+    64
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_point | dtf::secs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_point, secs"
+   ,"2019-01-08-16.50.23"
+)
+,make_correct_val(
+    65
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_point | dtf::msecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_point, msecs"
+   ,"2019-01-08-16.50.23.006"
+)
+,make_correct_val(
+    66
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_point | dtf::usecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_point, usecs"
+   ,"2019-01-08-16.50.23.006057"
+)
+,make_correct_val(
+    67
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_point | dtf::nsecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_point, nsecs"
+   ,"2019-01-08-16.50.23.006057057"
+)
+,make_correct_val(
+    68
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::secs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_empty, secs"
+   ,"2019-01-08-165023"
+)
+,make_correct_val(
+    69
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::msecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_empty, msecs"
+   ,"2019-01-08-165023.006"
+)
+,make_correct_val(
+    70
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::usecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_empty, usecs"
+   ,"2019-01-08-165023.006057"
+)
+,make_correct_val(
+    71
+   ,dtf::yyyy_mm_dd | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::nsecs
+   ,"yyyy_mm_dd, date_sep_dash, dt_sep_dash, time_sep_empty, nsecs"
+   ,"2019-01-08-165023.006057057"
+)
+,make_correct_val(
+    72
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_colon | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_colon, secs"
    ,"2019.01.08T16:50:23"
 )
 ,make_correct_val(
-    61
+    73
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_colon | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_colon, msecs"
    ,"2019.01.08T16:50:23.006"
 )
 ,make_correct_val(
-    62
+    74
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_colon | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_colon, usecs"
    ,"2019.01.08T16:50:23.006057"
 )
 ,make_correct_val(
-    63
+    75
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_colon | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_colon, nsecs"
    ,"2019.01.08T16:50:23.006057057"
 )
 ,make_correct_val(
-    64
+    76
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_point | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_point, secs"
    ,"2019.01.08T16.50.23"
 )
 ,make_correct_val(
-    65
+    77
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_point | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_point, msecs"
    ,"2019.01.08T16.50.23.006"
 )
 ,make_correct_val(
-    66
+    78
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_point | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_point, usecs"
    ,"2019.01.08T16.50.23.006057"
 )
 ,make_correct_val(
-    67
+    79
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_point | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_point, nsecs"
    ,"2019.01.08T16.50.23.006057057"
 )
 ,make_correct_val(
-    68
+    80
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_empty | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_empty, secs"
    ,"2019.01.08T165023"
 )
 ,make_correct_val(
-    69
+    81
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_empty | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_empty, msecs"
    ,"2019.01.08T165023.006"
 )
 ,make_correct_val(
-    70
+    82
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_empty | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_empty, usecs"
    ,"2019.01.08T165023.006057"
 )
 ,make_correct_val(
-    71
+    83
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_empty | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_T, time_sep_empty, nsecs"
    ,"2019.01.08T165023.006057057"
 )
 ,make_correct_val(
-    72
+    84
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_colon | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_colon, secs"
    ,"2019.01.08t16:50:23"
 )
 ,make_correct_val(
-    73
+    85
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_colon | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_colon, msecs"
    ,"2019.01.08t16:50:23.006"
 )
 ,make_correct_val(
-    74
+    86
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_colon | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_colon, usecs"
    ,"2019.01.08t16:50:23.006057"
 )
 ,make_correct_val(
-    75
+    87
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_colon | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_colon, nsecs"
    ,"2019.01.08t16:50:23.006057057"
 )
 ,make_correct_val(
-    76
+    88
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_point | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_point, secs"
    ,"2019.01.08t16.50.23"
 )
 ,make_correct_val(
-    77
+    89
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_point | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_point, msecs"
    ,"2019.01.08t16.50.23.006"
 )
 ,make_correct_val(
-    78
+    90
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_point | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_point, usecs"
    ,"2019.01.08t16.50.23.006057"
 )
 ,make_correct_val(
-    79
+    91
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_point | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_point, nsecs"
    ,"2019.01.08t16.50.23.006057057"
 )
 ,make_correct_val(
-    80
+    92
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_empty | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_empty, secs"
    ,"2019.01.08t165023"
 )
 ,make_correct_val(
-    81
+    93
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_empty | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_empty, msecs"
    ,"2019.01.08t165023.006"
 )
 ,make_correct_val(
-    82
+    94
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_empty | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_empty, usecs"
    ,"2019.01.08t165023.006057"
 )
 ,make_correct_val(
-    83
+    95
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_empty | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_t, time_sep_empty, nsecs"
    ,"2019.01.08t165023.006057057"
 )
 ,make_correct_val(
-    84
+    96
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_colon | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_colon, secs"
    ,"2019.01.08 16:50:23"
 )
 ,make_correct_val(
-    85
+    97
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_colon | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_colon, msecs"
    ,"2019.01.08 16:50:23.006"
 )
 ,make_correct_val(
-    86
+    98
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_colon | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_colon, usecs"
    ,"2019.01.08 16:50:23.006057"
 )
 ,make_correct_val(
-    87
+    99
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_colon | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_colon, nsecs"
    ,"2019.01.08 16:50:23.006057057"
 )
 ,make_correct_val(
-    88
+    100
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_point | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_point, secs"
    ,"2019.01.08 16.50.23"
 )
 ,make_correct_val(
-    89
+    101
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_point | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_point, msecs"
    ,"2019.01.08 16.50.23.006"
 )
 ,make_correct_val(
-    90
+    102
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_point | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_point, usecs"
    ,"2019.01.08 16.50.23.006057"
 )
 ,make_correct_val(
-    91
+    103
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_point | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_point, nsecs"
    ,"2019.01.08 16.50.23.006057057"
 )
 ,make_correct_val(
-    92
+    104
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_empty | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_empty, secs"
    ,"2019.01.08 165023"
 )
 ,make_correct_val(
-    93
+    105
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_empty | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_empty, msecs"
    ,"2019.01.08 165023.006"
 )
 ,make_correct_val(
-    94
+    106
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_empty | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_empty, usecs"
    ,"2019.01.08 165023.006057"
 )
 ,make_correct_val(
-    95
+    107
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_empty | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_space, time_sep_empty, nsecs"
    ,"2019.01.08 165023.006057057"
 )
 ,make_correct_val(
-    96
+    108
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_colon, secs"
    ,"2019.01.08_16:50:23"
 )
 ,make_correct_val(
-    97
+    109
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_colon, msecs"
    ,"2019.01.08_16:50:23.006"
 )
 ,make_correct_val(
-    98
+    110
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_colon, usecs"
    ,"2019.01.08_16:50:23.006057"
 )
 ,make_correct_val(
-    99
+    111
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_colon, nsecs"
    ,"2019.01.08_16:50:23.006057057"
 )
 ,make_correct_val(
-    100
+    112
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_point, secs"
    ,"2019.01.08_16.50.23"
 )
 ,make_correct_val(
-    101
+    113
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_point, msecs"
    ,"2019.01.08_16.50.23.006"
 )
 ,make_correct_val(
-    102
+    114
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_point, usecs"
    ,"2019.01.08_16.50.23.006057"
 )
 ,make_correct_val(
-    103
+    115
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_point, nsecs"
    ,"2019.01.08_16.50.23.006057057"
 )
 ,make_correct_val(
-    104
+    116
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_empty, secs"
    ,"2019.01.08_165023"
 )
 ,make_correct_val(
-    105
+    117
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_empty, msecs"
    ,"2019.01.08_165023.006"
 )
 ,make_correct_val(
-    106
+    118
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_empty, usecs"
    ,"2019.01.08_165023.006057"
 )
 ,make_correct_val(
-    107
+    119
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_underscore, time_sep_empty, nsecs"
    ,"2019.01.08_165023.006057057"
 )
 ,make_correct_val(
-    108
+    120
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_colon, secs"
    ,"2019.01.08/16:50:23"
 )
 ,make_correct_val(
-    109
+    121
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_colon, msecs"
    ,"2019.01.08/16:50:23.006"
 )
 ,make_correct_val(
-    110
+    122
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_colon, usecs"
    ,"2019.01.08/16:50:23.006057"
 )
 ,make_correct_val(
-    111
+    123
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_colon, nsecs"
    ,"2019.01.08/16:50:23.006057057"
 )
 ,make_correct_val(
-    112
+    124
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_point | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_point, secs"
    ,"2019.01.08/16.50.23"
 )
 ,make_correct_val(
-    113
+    125
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_point | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_point, msecs"
    ,"2019.01.08/16.50.23.006"
 )
 ,make_correct_val(
-    114
+    126
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_point | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_point, usecs"
    ,"2019.01.08/16.50.23.006057"
 )
 ,make_correct_val(
-    115
+    127
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_point | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_point, nsecs"
    ,"2019.01.08/16.50.23.006057057"
 )
 ,make_correct_val(
-    116
+    128
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::secs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_empty, secs"
    ,"2019.01.08/165023"
 )
 ,make_correct_val(
-    117
+    129
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::msecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_empty, msecs"
    ,"2019.01.08/165023.006"
 )
 ,make_correct_val(
-    118
+    130
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::usecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_empty, usecs"
    ,"2019.01.08/165023.006057"
 )
 ,make_correct_val(
-    119
+    131
    ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_point, dt_sep_slash, time_sep_empty, nsecs"
    ,"2019.01.08/165023.006057057"
 )
 ,make_correct_val(
-    120
+    132
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::secs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_colon, secs"
+   ,"2019.01.08-16:50:23"
+)
+,make_correct_val(
+    133
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::msecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_colon, msecs"
+   ,"2019.01.08-16:50:23.006"
+)
+,make_correct_val(
+    134
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::usecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_colon, usecs"
+   ,"2019.01.08-16:50:23.006057"
+)
+,make_correct_val(
+    135
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::nsecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_colon, nsecs"
+   ,"2019.01.08-16:50:23.006057057"
+)
+,make_correct_val(
+    136
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_point | dtf::secs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_point, secs"
+   ,"2019.01.08-16.50.23"
+)
+,make_correct_val(
+    137
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_point | dtf::msecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_point, msecs"
+   ,"2019.01.08-16.50.23.006"
+)
+,make_correct_val(
+    138
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_point | dtf::usecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_point, usecs"
+   ,"2019.01.08-16.50.23.006057"
+)
+,make_correct_val(
+    139
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_point | dtf::nsecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_point, nsecs"
+   ,"2019.01.08-16.50.23.006057057"
+)
+,make_correct_val(
+    140
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::secs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_empty, secs"
+   ,"2019.01.08-165023"
+)
+,make_correct_val(
+    141
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::msecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_empty, msecs"
+   ,"2019.01.08-165023.006"
+)
+,make_correct_val(
+    142
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::usecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_empty, usecs"
+   ,"2019.01.08-165023.006057"
+)
+,make_correct_val(
+    143
+   ,dtf::yyyy_mm_dd | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::nsecs
+   ,"yyyy_mm_dd, date_sep_point, dt_sep_dash, time_sep_empty, nsecs"
+   ,"2019.01.08-165023.006057057"
+)
+,make_correct_val(
+    144
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_colon | dtf::secs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_colon, secs"
    ,"20190108T16:50:23"
 )
 ,make_correct_val(
-    121
+    145
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_colon | dtf::msecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_colon, msecs"
    ,"20190108T16:50:23.006"
 )
 ,make_correct_val(
-    122
+    146
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_colon | dtf::usecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_colon, usecs"
    ,"20190108T16:50:23.006057"
 )
 ,make_correct_val(
-    123
+    147
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_colon | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_colon, nsecs"
    ,"20190108T16:50:23.006057057"
 )
 ,make_correct_val(
-    124
+    148
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_point | dtf::secs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_point, secs"
    ,"20190108T16.50.23"
 )
 ,make_correct_val(
-    125
+    149
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_point | dtf::msecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_point, msecs"
    ,"20190108T16.50.23.006"
 )
 ,make_correct_val(
-    126
+    150
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_point | dtf::usecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_point, usecs"
    ,"20190108T16.50.23.006057"
 )
 ,make_correct_val(
-    127
+    151
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_point | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_point, nsecs"
    ,"20190108T16.50.23.006057057"
 )
 ,make_correct_val(
-    128
+    152
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_empty | dtf::secs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_empty, secs"
    ,"20190108T165023"
 )
 ,make_correct_val(
-    129
+    153
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_empty | dtf::msecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_empty, msecs"
    ,"20190108T165023.006"
 )
 ,make_correct_val(
-    130
+    154
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_empty | dtf::usecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_empty, usecs"
    ,"20190108T165023.006057"
 )
 ,make_correct_val(
-    131
+    155
    ,dtf::yyyy_mm_dd | dtf::date_sep_empty | dtf::dt_sep_T | dtf::time_sep_empty | dtf::nsecs
    ,"yyyy_mm_dd, date_sep_empty, dt_sep_T, time_sep_empty, nsecs"
    ,"20190108T165023.006057057"
 )
 ,make_correct_val(
-    132
+    156
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_colon, secs"
    ,"08-01-2019T16:50:23"
 )
 ,make_correct_val(
-    133
+    157
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_colon, msecs"
    ,"08-01-2019T16:50:23.006"
 )
 ,make_correct_val(
-    134
+    158
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_colon, usecs"
    ,"08-01-2019T16:50:23.006057"
 )
 ,make_correct_val(
-    135
+    159
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_colon, nsecs"
    ,"08-01-2019T16:50:23.006057057"
 )
 ,make_correct_val(
-    136
+    160
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_point, secs"
    ,"08-01-2019T16.50.23"
 )
 ,make_correct_val(
-    137
+    161
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_point, msecs"
    ,"08-01-2019T16.50.23.006"
 )
 ,make_correct_val(
-    138
+    162
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_point, usecs"
    ,"08-01-2019T16.50.23.006057"
 )
 ,make_correct_val(
-    139
+    163
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_point, nsecs"
    ,"08-01-2019T16.50.23.006057057"
 )
 ,make_correct_val(
-    140
+    164
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_empty, secs"
    ,"08-01-2019T165023"
 )
 ,make_correct_val(
-    141
+    165
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_empty, msecs"
    ,"08-01-2019T165023.006"
 )
 ,make_correct_val(
-    142
+    166
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_empty, usecs"
    ,"08-01-2019T165023.006057"
 )
 ,make_correct_val(
-    143
+    167
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_T | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_T, time_sep_empty, nsecs"
    ,"08-01-2019T165023.006057057"
 )
 ,make_correct_val(
-    144
+    168
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_colon, secs"
    ,"08-01-2019t16:50:23"
 )
 ,make_correct_val(
-    145
+    169
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_colon, msecs"
    ,"08-01-2019t16:50:23.006"
 )
 ,make_correct_val(
-    146
+    170
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_colon, usecs"
    ,"08-01-2019t16:50:23.006057"
 )
 ,make_correct_val(
-    147
+    171
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_colon, nsecs"
    ,"08-01-2019t16:50:23.006057057"
 )
 ,make_correct_val(
-    148
+    172
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_point, secs"
    ,"08-01-2019t16.50.23"
 )
 ,make_correct_val(
-    149
+    173
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_point, msecs"
    ,"08-01-2019t16.50.23.006"
 )
 ,make_correct_val(
-    150
+    174
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_point, usecs"
    ,"08-01-2019t16.50.23.006057"
 )
 ,make_correct_val(
-    151
+    175
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_point, nsecs"
    ,"08-01-2019t16.50.23.006057057"
 )
 ,make_correct_val(
-    152
+    176
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_empty, secs"
    ,"08-01-2019t165023"
 )
 ,make_correct_val(
-    153
+    177
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_empty, msecs"
    ,"08-01-2019t165023.006"
 )
 ,make_correct_val(
-    154
+    178
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_empty, usecs"
    ,"08-01-2019t165023.006057"
 )
 ,make_correct_val(
-    155
+    179
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_t | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_t, time_sep_empty, nsecs"
    ,"08-01-2019t165023.006057057"
 )
 ,make_correct_val(
-    156
+    180
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_colon, secs"
    ,"08-01-2019 16:50:23"
 )
 ,make_correct_val(
-    157
+    181
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_colon, msecs"
    ,"08-01-2019 16:50:23.006"
 )
 ,make_correct_val(
-    158
+    182
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_colon, usecs"
    ,"08-01-2019 16:50:23.006057"
 )
 ,make_correct_val(
-    159
+    183
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_colon, nsecs"
    ,"08-01-2019 16:50:23.006057057"
 )
 ,make_correct_val(
-    160
+    184
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_point, secs"
    ,"08-01-2019 16.50.23"
 )
 ,make_correct_val(
-    161
+    185
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_point, msecs"
    ,"08-01-2019 16.50.23.006"
 )
 ,make_correct_val(
-    162
+    186
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_point, usecs"
    ,"08-01-2019 16.50.23.006057"
 )
 ,make_correct_val(
-    163
+    187
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_point, nsecs"
    ,"08-01-2019 16.50.23.006057057"
 )
 ,make_correct_val(
-    164
+    188
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_empty, secs"
    ,"08-01-2019 165023"
 )
 ,make_correct_val(
-    165
+    189
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_empty, msecs"
    ,"08-01-2019 165023.006"
 )
 ,make_correct_val(
-    166
+    190
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_empty, usecs"
    ,"08-01-2019 165023.006057"
 )
 ,make_correct_val(
-    167
+    191
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_space | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_space, time_sep_empty, nsecs"
    ,"08-01-2019 165023.006057057"
 )
 ,make_correct_val(
-    168
+    192
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_colon, secs"
    ,"08-01-2019_16:50:23"
 )
 ,make_correct_val(
-    169
+    193
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_colon, msecs"
    ,"08-01-2019_16:50:23.006"
 )
 ,make_correct_val(
-    170
+    194
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_colon, usecs"
    ,"08-01-2019_16:50:23.006057"
 )
 ,make_correct_val(
-    171
+    195
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_colon, nsecs"
    ,"08-01-2019_16:50:23.006057057"
 )
 ,make_correct_val(
-    172
+    196
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_point, secs"
    ,"08-01-2019_16.50.23"
 )
 ,make_correct_val(
-    173
+    197
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_point, msecs"
    ,"08-01-2019_16.50.23.006"
 )
 ,make_correct_val(
-    174
+    198
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_point, usecs"
    ,"08-01-2019_16.50.23.006057"
 )
 ,make_correct_val(
-    175
+    199
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_point, nsecs"
    ,"08-01-2019_16.50.23.006057057"
 )
 ,make_correct_val(
-    176
+    200
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_empty, secs"
    ,"08-01-2019_165023"
 )
 ,make_correct_val(
-    177
+    201
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_empty, msecs"
    ,"08-01-2019_165023.006"
 )
 ,make_correct_val(
-    178
+    202
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_empty, usecs"
    ,"08-01-2019_165023.006057"
 )
 ,make_correct_val(
-    179
+    203
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_underscore, time_sep_empty, nsecs"
    ,"08-01-2019_165023.006057057"
 )
 ,make_correct_val(
-    180
+    204
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_colon, secs"
    ,"08-01-2019/16:50:23"
 )
 ,make_correct_val(
-    181
+    205
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_colon, msecs"
    ,"08-01-2019/16:50:23.006"
 )
 ,make_correct_val(
-    182
+    206
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_colon, usecs"
    ,"08-01-2019/16:50:23.006057"
 )
 ,make_correct_val(
-    183
+    207
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_colon, nsecs"
    ,"08-01-2019/16:50:23.006057057"
 )
 ,make_correct_val(
-    184
+    208
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_point, secs"
    ,"08-01-2019/16.50.23"
 )
 ,make_correct_val(
-    185
+    209
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_point, msecs"
    ,"08-01-2019/16.50.23.006"
 )
 ,make_correct_val(
-    186
+    210
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_point, usecs"
    ,"08-01-2019/16.50.23.006057"
 )
 ,make_correct_val(
-    187
+    211
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_point, nsecs"
    ,"08-01-2019/16.50.23.006057057"
 )
 ,make_correct_val(
-    188
+    212
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_empty, secs"
    ,"08-01-2019/165023"
 )
 ,make_correct_val(
-    189
+    213
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_empty, msecs"
    ,"08-01-2019/165023.006"
 )
 ,make_correct_val(
-    190
+    214
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_empty, usecs"
    ,"08-01-2019/165023.006057"
 )
 ,make_correct_val(
-    191
+    215
    ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_dash, dt_sep_slash, time_sep_empty, nsecs"
    ,"08-01-2019/165023.006057057"
 )
 ,make_correct_val(
-    192
+    216
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::secs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_colon, secs"
+   ,"08-01-2019-16:50:23"
+)
+,make_correct_val(
+    217
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::msecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_colon, msecs"
+   ,"08-01-2019-16:50:23.006"
+)
+,make_correct_val(
+    218
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::usecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_colon, usecs"
+   ,"08-01-2019-16:50:23.006057"
+)
+,make_correct_val(
+    219
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::nsecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_colon, nsecs"
+   ,"08-01-2019-16:50:23.006057057"
+)
+,make_correct_val(
+    220
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_point | dtf::secs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_point, secs"
+   ,"08-01-2019-16.50.23"
+)
+,make_correct_val(
+    221
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_point | dtf::msecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_point, msecs"
+   ,"08-01-2019-16.50.23.006"
+)
+,make_correct_val(
+    222
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_point | dtf::usecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_point, usecs"
+   ,"08-01-2019-16.50.23.006057"
+)
+,make_correct_val(
+    223
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_point | dtf::nsecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_point, nsecs"
+   ,"08-01-2019-16.50.23.006057057"
+)
+,make_correct_val(
+    224
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::secs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_empty, secs"
+   ,"08-01-2019-165023"
+)
+,make_correct_val(
+    225
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::msecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_empty, msecs"
+   ,"08-01-2019-165023.006"
+)
+,make_correct_val(
+    226
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::usecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_empty, usecs"
+   ,"08-01-2019-165023.006057"
+)
+,make_correct_val(
+    227
+   ,dtf::dd_mm_yyyy | dtf::date_sep_dash | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::nsecs
+   ,"dd_mm_yyyy, date_sep_dash, dt_sep_dash, time_sep_empty, nsecs"
+   ,"08-01-2019-165023.006057057"
+)
+,make_correct_val(
+    228
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_colon, secs"
    ,"08.01.2019T16:50:23"
 )
 ,make_correct_val(
-    193
+    229
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_colon, msecs"
    ,"08.01.2019T16:50:23.006"
 )
 ,make_correct_val(
-    194
+    230
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_colon, usecs"
    ,"08.01.2019T16:50:23.006057"
 )
 ,make_correct_val(
-    195
+    231
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_colon, nsecs"
    ,"08.01.2019T16:50:23.006057057"
 )
 ,make_correct_val(
-    196
+    232
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_point, secs"
    ,"08.01.2019T16.50.23"
 )
 ,make_correct_val(
-    197
+    233
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_point, msecs"
    ,"08.01.2019T16.50.23.006"
 )
 ,make_correct_val(
-    198
+    234
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_point, usecs"
    ,"08.01.2019T16.50.23.006057"
 )
 ,make_correct_val(
-    199
+    235
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_point, nsecs"
    ,"08.01.2019T16.50.23.006057057"
 )
 ,make_correct_val(
-    200
+    236
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_empty, secs"
    ,"08.01.2019T165023"
 )
 ,make_correct_val(
-    201
+    237
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_empty, msecs"
    ,"08.01.2019T165023.006"
 )
 ,make_correct_val(
-    202
+    238
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_empty, usecs"
    ,"08.01.2019T165023.006057"
 )
 ,make_correct_val(
-    203
+    239
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_T | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_T, time_sep_empty, nsecs"
    ,"08.01.2019T165023.006057057"
 )
 ,make_correct_val(
-    204
+    240
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_colon, secs"
    ,"08.01.2019t16:50:23"
 )
 ,make_correct_val(
-    205
+    241
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_colon, msecs"
    ,"08.01.2019t16:50:23.006"
 )
 ,make_correct_val(
-    206
+    242
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_colon, usecs"
    ,"08.01.2019t16:50:23.006057"
 )
 ,make_correct_val(
-    207
+    243
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_colon, nsecs"
    ,"08.01.2019t16:50:23.006057057"
 )
 ,make_correct_val(
-    208
+    244
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_point, secs"
    ,"08.01.2019t16.50.23"
 )
 ,make_correct_val(
-    209
+    245
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_point, msecs"
    ,"08.01.2019t16.50.23.006"
 )
 ,make_correct_val(
-    210
+    246
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_point, usecs"
    ,"08.01.2019t16.50.23.006057"
 )
 ,make_correct_val(
-    211
+    247
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_point, nsecs"
    ,"08.01.2019t16.50.23.006057057"
 )
 ,make_correct_val(
-    212
+    248
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_empty, secs"
    ,"08.01.2019t165023"
 )
 ,make_correct_val(
-    213
+    249
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_empty, msecs"
    ,"08.01.2019t165023.006"
 )
 ,make_correct_val(
-    214
+    250
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_empty, usecs"
    ,"08.01.2019t165023.006057"
 )
 ,make_correct_val(
-    215
+    251
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_t | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_t, time_sep_empty, nsecs"
    ,"08.01.2019t165023.006057057"
 )
 ,make_correct_val(
-    216
+    252
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_colon, secs"
    ,"08.01.2019 16:50:23"
 )
 ,make_correct_val(
-    217
+    253
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_colon, msecs"
    ,"08.01.2019 16:50:23.006"
 )
 ,make_correct_val(
-    218
+    254
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_colon, usecs"
    ,"08.01.2019 16:50:23.006057"
 )
 ,make_correct_val(
-    219
+    255
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_colon, nsecs"
    ,"08.01.2019 16:50:23.006057057"
 )
 ,make_correct_val(
-    220
+    256
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_point, secs"
    ,"08.01.2019 16.50.23"
 )
 ,make_correct_val(
-    221
+    257
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_point, msecs"
    ,"08.01.2019 16.50.23.006"
 )
 ,make_correct_val(
-    222
+    258
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_point, usecs"
    ,"08.01.2019 16.50.23.006057"
 )
 ,make_correct_val(
-    223
+    259
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_point, nsecs"
    ,"08.01.2019 16.50.23.006057057"
 )
 ,make_correct_val(
-    224
+    260
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_empty, secs"
    ,"08.01.2019 165023"
 )
 ,make_correct_val(
-    225
+    261
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_empty, msecs"
    ,"08.01.2019 165023.006"
 )
 ,make_correct_val(
-    226
+    262
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_empty, usecs"
    ,"08.01.2019 165023.006057"
 )
 ,make_correct_val(
-    227
+    263
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_space | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_space, time_sep_empty, nsecs"
    ,"08.01.2019 165023.006057057"
 )
 ,make_correct_val(
-    228
+    264
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_colon, secs"
    ,"08.01.2019_16:50:23"
 )
 ,make_correct_val(
-    229
+    265
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_colon, msecs"
    ,"08.01.2019_16:50:23.006"
 )
 ,make_correct_val(
-    230
+    266
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_colon, usecs"
    ,"08.01.2019_16:50:23.006057"
 )
 ,make_correct_val(
-    231
+    267
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_colon, nsecs"
    ,"08.01.2019_16:50:23.006057057"
 )
 ,make_correct_val(
-    232
+    268
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_point, secs"
    ,"08.01.2019_16.50.23"
 )
 ,make_correct_val(
-    233
+    269
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_point, msecs"
    ,"08.01.2019_16.50.23.006"
 )
 ,make_correct_val(
-    234
+    270
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_point, usecs"
    ,"08.01.2019_16.50.23.006057"
 )
 ,make_correct_val(
-    235
+    271
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_point, nsecs"
    ,"08.01.2019_16.50.23.006057057"
 )
 ,make_correct_val(
-    236
+    272
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_empty, secs"
    ,"08.01.2019_165023"
 )
 ,make_correct_val(
-    237
+    273
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_empty, msecs"
    ,"08.01.2019_165023.006"
 )
 ,make_correct_val(
-    238
+    274
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_empty, usecs"
    ,"08.01.2019_165023.006057"
 )
 ,make_correct_val(
-    239
+    275
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_underscore | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_underscore, time_sep_empty, nsecs"
    ,"08.01.2019_165023.006057057"
 )
 ,make_correct_val(
-    240
+    276
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_colon, secs"
    ,"08.01.2019/16:50:23"
 )
 ,make_correct_val(
-    241
+    277
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_colon, msecs"
    ,"08.01.2019/16:50:23.006"
 )
 ,make_correct_val(
-    242
+    278
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_colon, usecs"
    ,"08.01.2019/16:50:23.006057"
 )
 ,make_correct_val(
-    243
+    279
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_colon, nsecs"
    ,"08.01.2019/16:50:23.006057057"
 )
 ,make_correct_val(
-    244
+    280
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_point, secs"
    ,"08.01.2019/16.50.23"
 )
 ,make_correct_val(
-    245
+    281
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_point, msecs"
    ,"08.01.2019/16.50.23.006"
 )
 ,make_correct_val(
-    246
+    282
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_point, usecs"
    ,"08.01.2019/16.50.23.006057"
 )
 ,make_correct_val(
-    247
+    283
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_point, nsecs"
    ,"08.01.2019/16.50.23.006057057"
 )
 ,make_correct_val(
-    248
+    284
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_empty, secs"
    ,"08.01.2019/165023"
 )
 ,make_correct_val(
-    249
+    285
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_empty, msecs"
    ,"08.01.2019/165023.006"
 )
 ,make_correct_val(
-    250
+    286
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_empty, usecs"
    ,"08.01.2019/165023.006057"
 )
 ,make_correct_val(
-    251
+    287
    ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_slash | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_point, dt_sep_slash, time_sep_empty, nsecs"
    ,"08.01.2019/165023.006057057"
 )
 ,make_correct_val(
-    252
+    288
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::secs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_colon, secs"
+   ,"08.01.2019-16:50:23"
+)
+,make_correct_val(
+    289
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::msecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_colon, msecs"
+   ,"08.01.2019-16:50:23.006"
+)
+,make_correct_val(
+    290
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::usecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_colon, usecs"
+   ,"08.01.2019-16:50:23.006057"
+)
+,make_correct_val(
+    291
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_colon | dtf::nsecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_colon, nsecs"
+   ,"08.01.2019-16:50:23.006057057"
+)
+,make_correct_val(
+    292
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_point | dtf::secs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_point, secs"
+   ,"08.01.2019-16.50.23"
+)
+,make_correct_val(
+    293
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_point | dtf::msecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_point, msecs"
+   ,"08.01.2019-16.50.23.006"
+)
+,make_correct_val(
+    294
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_point | dtf::usecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_point, usecs"
+   ,"08.01.2019-16.50.23.006057"
+)
+,make_correct_val(
+    295
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_point | dtf::nsecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_point, nsecs"
+   ,"08.01.2019-16.50.23.006057057"
+)
+,make_correct_val(
+    296
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::secs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_empty, secs"
+   ,"08.01.2019-165023"
+)
+,make_correct_val(
+    297
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::msecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_empty, msecs"
+   ,"08.01.2019-165023.006"
+)
+,make_correct_val(
+    298
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::usecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_empty, usecs"
+   ,"08.01.2019-165023.006057"
+)
+,make_correct_val(
+    299
+   ,dtf::dd_mm_yyyy | dtf::date_sep_point | dtf::dt_sep_dash | dtf::time_sep_empty | dtf::nsecs
+   ,"dd_mm_yyyy, date_sep_point, dt_sep_dash, time_sep_empty, nsecs"
+   ,"08.01.2019-165023.006057057"
+)
+,make_correct_val(
+    300
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_colon | dtf::secs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_colon, secs"
    ,"08012019t16:50:23"
 )
 ,make_correct_val(
-    253
+    301
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_colon | dtf::msecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_colon, msecs"
    ,"08012019t16:50:23.006"
 )
 ,make_correct_val(
-    254
+    302
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_colon | dtf::usecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_colon, usecs"
    ,"08012019t16:50:23.006057"
 )
 ,make_correct_val(
-    255
+    303
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_colon | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_colon, nsecs"
    ,"08012019t16:50:23.006057057"
 )
 ,make_correct_val(
-    256
+    304
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_point | dtf::secs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_point, secs"
    ,"08012019t16.50.23"
 )
 ,make_correct_val(
-    257
+    305
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_point | dtf::msecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_point, msecs"
    ,"08012019t16.50.23.006"
 )
 ,make_correct_val(
-    258
+    306
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_point | dtf::usecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_point, usecs"
    ,"08012019t16.50.23.006057"
 )
 ,make_correct_val(
-    259
+    307
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_point | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_point, nsecs"
    ,"08012019t16.50.23.006057057"
 )
 ,make_correct_val(
-    260
+    308
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_empty | dtf::secs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_empty, secs"
    ,"08012019t165023"
 )
 ,make_correct_val(
-    261
+    309
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_empty | dtf::msecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_empty, msecs"
    ,"08012019t165023.006"
 )
 ,make_correct_val(
-    262
+    310
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_empty | dtf::usecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_empty, usecs"
    ,"08012019t165023.006057"
 )
 ,make_correct_val(
-    263
+    311
    ,dtf::dd_mm_yyyy | dtf::date_sep_empty | dtf::dt_sep_t | dtf::time_sep_empty | dtf::nsecs
    ,"dd_mm_yyyy, date_sep_empty, dt_sep_t, time_sep_empty, nsecs"
    ,"08012019t165023.006057057"
