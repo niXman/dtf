@@ -1,9 +1,13 @@
 
-cmake_minimum_required(VERSION 2.8)
-project(dtf)
+cmake_minimum_required(VERSION 3.5)
+project(dtf CXX)
 
 option(ENABLE_ASAN "Enable AddressSanitizer")
 option(ENABLE_UBSAN "Enable UndefinedBehaviourSanitizer")
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 if(ENABLE_ASAN)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-pointer")
@@ -13,7 +17,11 @@ if(ENABLE_UBSAN)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=undefined")
 endif()
 
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra")
+if(MSVC)
+    add_compile_options(/W4)
+else()
+    add_compile_options(-Wall -Wextra)
+endif()
 
 message("CMDLINE: ${CMAKE_CXX_FLAGS}")
 

@@ -1,3 +1,5 @@
+[![CI](https://github.com/niXman/dtf/actions/workflows/ci.yml/badge.svg)](https://github.com/niXman/dtf/actions/workflows/ci.yml)
+
 # dtf
 Fast, header-only, date-time formating and validating functions for C++11
 

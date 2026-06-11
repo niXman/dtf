@@ -1,0 +1,116 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  linux-gcc:
+    name: linux-gcc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: >
+          cmake -S test -B build
+          -DCMAKE_CXX_COMPILER=g++
+          -DCMAKE_CXX_STANDARD=11
+          -DCMAKE_CXX_STANDARD_REQUIRED=ON
+          -DCMAKE_CXX_EXTENSIONS=OFF
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ./build/dtf
+
+  linux-clang:
+    name: linux-clang
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: >
+          cmake -S test -B build
+          -DCMAKE_CXX_COMPILER=clang++
+          -DCMAKE_CXX_STANDARD=11
+          -DCMAKE_CXX_STANDARD_REQUIRED=ON
+          -DCMAKE_CXX_EXTENSIONS=OFF
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ./build/dtf
+
+  msvc:
+    name: msvc
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: >
+          cmake -S test -B build
+          -A x64
+          -DCMAKE_CXX_STANDARD=11
+          -DCMAKE_CXX_STANDARD_REQUIRED=ON
+          -DCMAKE_CXX_EXTENSIONS=OFF
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Test
+        run: .\build\Release\dtf.exe
+
+  mingw-w64:
+    name: mingw-w64
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: MinGW-w64 (niXman binaries)
+        shell: pwsh
+        env:
+          MINGW_URL: https://github.com/niXman/mingw-builds-binaries/releases/download/15.2.0-rt_v13-rev1/x86_64-15.2.0-release-win32-seh-ucrt-rt_v13-rev1.7z
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP "mingw-win64.7z"
+          Invoke-WebRequest -Uri $env:MINGW_URL -OutFile $archive -UseBasicParsing
+          $sevenZip = Join-Path ${env:ProgramFiles} "7-Zip\7z.exe"
+          if (-not (Test-Path $sevenZip)) {
+            $sevenZip = "7z"
+          }
+          $unpackRoot = Join-Path $env:RUNNER_TEMP "mingw-unpack"
+          New-Item -ItemType Directory -Force -Path $unpackRoot | Out-Null
+          & $sevenZip x $archive "-o$unpackRoot" -y
+          $gcc = Get-ChildItem -Path $unpackRoot -Recurse -Filter gcc.exe -ErrorAction SilentlyContinue |
+            Select-Object -First 1
+          if (-not $gcc) { throw "gcc.exe not found under $unpackRoot after extracting MinGW" }
+          Add-Content -Path $env:GITHUB_PATH -Value $gcc.DirectoryName
+
+      - name: Ninja
+        run: choco install ninja -y
+
+      - name: Configure
+        run: >
+          cmake -S test -B build
+          -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_C_COMPILER=gcc
+          -DCMAKE_CXX_COMPILER=g++
+          -DCMAKE_CXX_STANDARD=11
+          -DCMAKE_CXX_STANDARD_REQUIRED=ON
+          -DCMAKE_CXX_EXTENSIONS=OFF
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        run: ./build/dtf.exe
