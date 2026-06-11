@@ -144,7 +144,7 @@ int main() {
     std::cout << "DONE!" << std::endl;
 
 
-    std::cout << "Testing dtf::to_dt_chars()..." << std::endl;
+    std::cout << "Testing dtf::to_dt_chars()..." << std::flush;
     for ( const auto &it: good_vals ) {
         char buf[dtf::bufsize];
         auto r = test(buf, ts, it.flags, it.exp_flagsstr);
